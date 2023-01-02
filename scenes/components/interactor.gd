@@ -1,11 +1,19 @@
+#-------------------------------------------------------------------------------
+# area for interacting with other things
+# - Call interact() to interact with the closest InteractionArea.
+# - Calls hover() on the closest InteractionArea each frame.
+#-------------------------------------------------------------------------------
 extends Area2D
 class_name Interactor
 
 func interact() -> void:
-	for area in get_overlapping_areas():
-		if area is InteractionArea:
-			area.interact()
-			return
+#	for area in get_overlapping_areas():
+#		if area is InteractionArea:
+#			area.interact()
+#			return
+	var closest := get_closest_interaction_area()
+	if closest != null:
+		closest.interact()
 
 func _physics_process(delta: float) -> void:
 	

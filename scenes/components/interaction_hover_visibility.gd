@@ -1,3 +1,7 @@
+#-------------------------------------------------------------------------------
+# visible only when an InteractionArea is hovered
+# - Put things like interaction prompts as children of this.
+#-------------------------------------------------------------------------------
 extends Node2D
 class_name InteractionHoverVisibility
 

@@ -1,3 +1,8 @@
+#-------------------------------------------------------------------------------
+# flips left or right
+# - Uses scale.x
+# - Keep scale at default value or weird stuff might happen!
+#-------------------------------------------------------------------------------
 extends Node2D
 class_name Flip2D
 
