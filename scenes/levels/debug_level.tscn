@@ -147,7 +147,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="InputDisplay" parent="DebugUI/Control" instance=ExtResource("5_jb78b")]
-layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
