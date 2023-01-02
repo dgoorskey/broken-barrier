@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1irvg6x0sih6"]
+[gd_scene load_steps=13 format=3 uid="uid://c1irvg6x0sih6"]
 
 [ext_resource type="Script" path="res://scenes/components/level.gd" id="1_a055f"]
 [ext_resource type="Texture2D" uid="uid://bbuhtmw4f2nsa" path="res://icon.svg" id="2_4g1ya"]
@@ -9,12 +9,20 @@
 [ext_resource type="PackedScene" uid="uid://dnnk86d2gqm2i" path="res://scenes/widgets/input_display.tscn" id="5_jb78b"]
 [ext_resource type="PackedScene" uid="uid://dv81w2w8c4ys3" path="res://scenes/components/interaction_hover_visibility.tscn" id="6_86x54"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jbij4"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y8x6a"]
 radius = 32.0
 height = 128.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jeq8"]
 size = Vector2(193, 64)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jbij4"]
+radius = 32.0
+height = 128.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n2000"]
+radius = 32.0
+height = 128.0
 
 [node name="DebugLevel" type="Node2D"]
 y_sort_enabled = true
@@ -81,11 +89,11 @@ polygon = PackedVector2Array(0, 0, 128, 0, 192, 64, 64, 64)
 color = Color(0.784314, 0.784314, 0.784314, 1)
 
 [node name="Enemy1" type="StaticBody2D" parent="."]
-position = Vector2(384, 192)
+position = Vector2(449, 256)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1"]
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_jbij4")
+shape = SubResource("CapsuleShape2D_y8x6a")
 debug_color = Color(0, 0, 0, 0.419608)
 
 [node name="InteractionArea" parent="Enemy1" instance=ExtResource("4_efo8s")]
@@ -133,6 +141,18 @@ debug_color = Color(0, 0, 0, 0.419608)
 position = Vector2(0, -64)
 texture = ExtResource("2_4g1ya")
 
+[node name="Enemy3" type="StaticBody2D" parent="."]
+position = Vector2(80, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_n2000")
+debug_color = Color(0, 0, 0, 0.419608)
+
+[node name="Icon" type="Sprite2D" parent="Enemy3"]
+position = Vector2(0, -64)
+texture = ExtResource("2_4g1ya")
+
 [node name="Maemi" parent="." instance=ExtResource("3_ybaq0")]
 position = Vector2(-801, 160)
 
@@ -147,6 +167,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="InputDisplay" parent="DebugUI/Control" instance=ExtResource("5_jb78b")]
+layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
