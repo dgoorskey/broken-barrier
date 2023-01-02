@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnnk86d2gqm2i"]
+
+[ext_resource type="Script" path="res://scenes/widgets/input_display.gd" id="1_am2kf"]
+
+[node name="InputDisplay" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_am2kf")
+
+[node name="A" type="Label" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="B" type="Label" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "B"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 3
+
+[node name="Spacer" type="Control" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Up" type="Label" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "up"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer2" type="Control" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Left" type="Label" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "left"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Jump" type="Label" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "jump"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Right" type="Label" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "right"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer4" type="Control" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Down" type="Label" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "down"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer5" type="Control" parent="GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2

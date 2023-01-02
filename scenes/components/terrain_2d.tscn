@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8ju7nfksh2mo"]
+
+[ext_resource type="Script" path="res://scenes/components/terrain_2d.gd" id="1_b2kjy"]
+
+[node name="Terrain2D" type="CollisionPolygon2D"]
+script = ExtResource("1_b2kjy")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 1)

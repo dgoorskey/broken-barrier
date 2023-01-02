@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5q57w75hcnaa"]
+
+[ext_resource type="Script" path="res://scenes/components/flip_2d.gd" id="1_cgelj"]
+
+[node name="Flip2D" type="Node2D"]
+script = ExtResource("1_cgelj")

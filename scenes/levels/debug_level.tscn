@@ -1,0 +1,161 @@
+[gd_scene load_steps=11 format=3 uid="uid://c1irvg6x0sih6"]
+
+[ext_resource type="Script" path="res://scenes/components/level.gd" id="1_a055f"]
+[ext_resource type="Texture2D" uid="uid://bbuhtmw4f2nsa" path="res://icon.svg" id="2_4g1ya"]
+[ext_resource type="PackedScene" uid="uid://drnfnw4wrvp77" path="res://scenes/characters/maemi.tscn" id="3_ybaq0"]
+[ext_resource type="PackedScene" uid="uid://b8ju7nfksh2mo" path="res://scenes/components/terrain_2d.tscn" id="4_cy5cc"]
+[ext_resource type="PackedScene" uid="uid://cp348guvvd5t7" path="res://scenes/components/interaction_area.tscn" id="4_efo8s"]
+[ext_resource type="PackedScene" uid="uid://ba64gbg3b1pas" path="res://scenes/components/interaction_dialogue.tscn" id="5_d503c"]
+[ext_resource type="PackedScene" uid="uid://dnnk86d2gqm2i" path="res://scenes/widgets/input_display.tscn" id="5_jb78b"]
+[ext_resource type="PackedScene" uid="uid://dv81w2w8c4ys3" path="res://scenes/components/interaction_hover_visibility.tscn" id="6_86x54"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jbij4"]
+radius = 32.0
+height = 128.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2jeq8"]
+size = Vector2(193, 64)
+
+[node name="DebugLevel" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_a055f")
+
+[node name="Terrain" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+
+[node name="Floor" type="Polygon2D" parent="Terrain"]
+z_index = -2
+color = Color(0.12549, 0.12549, 0.12549, 1)
+polygon = PackedVector2Array(-1089, -897, 1346, -897, 1346, 961, -1089, 961)
+
+[node name="BackWall" parent="Terrain" instance=ExtResource("4_cy5cc")]
+z_index = -1
+position = Vector2(0, -64)
+polygon = PackedVector2Array(-1282, 0, -1282, -769, 1282, -769, 1282, 0)
+
+[node name="FrontWall" parent="Terrain" instance=ExtResource("4_cy5cc")]
+position = Vector2(0, 384)
+polygon = PackedVector2Array(-1282, 0, 1282, 0, 1282, 320, -1282, 321)
+
+[node name="LeftWall" parent="Terrain" instance=ExtResource("4_cy5cc")]
+position = Vector2(-1025, -64)
+polygon = PackedVector2Array(0, 0, 0, 448, -256, 448, -256, 0)
+
+[node name="RightWall" parent="Terrain" instance=ExtResource("4_cy5cc")]
+position = Vector2(449, -64)
+polygon = PackedVector2Array(0, 0, 449, 448, 833, 448, 833, 0)
+
+[node name="Box1" type="StaticBody2D" parent="."]
+position = Vector2(128, -64)
+
+[node name="BoxFront" parent="Box1" instance=ExtResource("4_cy5cc")]
+position = Vector2(64, 64)
+polygon = PackedVector2Array(0, 0, 0, -256, 128, -256, 128, 0)
+color = Color(1, 1, 1, 1)
+
+[node name="BoxLeft" parent="Box1" instance=ExtResource("4_cy5cc")]
+polygon = PackedVector2Array(0, -256, 64, -192, 64, 64, 0, 0)
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="BoxTop" parent="Box1" instance=ExtResource("4_cy5cc")]
+position = Vector2(0, -256)
+polygon = PackedVector2Array(0, 0, 128, 0, 192, 64, 64, 64)
+color = Color(0.784314, 0.784314, 0.784314, 1)
+
+[node name="Box2" type="StaticBody2D" parent="."]
+position = Vector2(128, -72)
+
+[node name="BoxFront" parent="Box2" instance=ExtResource("4_cy5cc")]
+position = Vector2(-192, 384)
+polygon = PackedVector2Array(0, 0, 0, -128, 128, -128, 128, 0)
+color = Color(1, 1, 1, 1)
+
+[node name="BoxLeft" parent="Box2" instance=ExtResource("4_cy5cc")]
+position = Vector2(-256, 320)
+polygon = PackedVector2Array(0, -128, 64, -64, 64, 64, 0, 0)
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="BoxTop" parent="Box2" instance=ExtResource("4_cy5cc")]
+position = Vector2(-256, 192)
+polygon = PackedVector2Array(0, 0, 128, 0, 192, 64, 64, 64)
+color = Color(0.784314, 0.784314, 0.784314, 1)
+
+[node name="Enemy1" type="StaticBody2D" parent="."]
+position = Vector2(384, 192)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jbij4")
+debug_color = Color(0, 0, 0, 0.419608)
+
+[node name="InteractionArea" parent="Enemy1" instance=ExtResource("4_efo8s")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1/InteractionArea"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_2jeq8")
+debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="Icon" type="Sprite2D" parent="Enemy1"]
+position = Vector2(0, -64)
+texture = ExtResource("2_4g1ya")
+
+[node name="InteractionDialogue" parent="Enemy1" node_paths=PackedStringArray("interaction_area") instance=ExtResource("5_d503c")]
+interaction_area = NodePath("../InteractionArea")
+
+[node name="InteractionHoverVisibility" parent="Enemy1" node_paths=PackedStringArray("interaction_area") instance=ExtResource("6_86x54")]
+interaction_area = NodePath("../InteractionArea")
+
+[node name="Label" type="Label" parent="Enemy1/InteractionHoverVisibility"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -160.0
+offset_right = 29.0
+offset_bottom = -134.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "talk (a)"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Enemy2" type="StaticBody2D" parent="."]
+position = Vector2(128, 256)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jbij4")
+debug_color = Color(0, 0, 0, 0.419608)
+
+[node name="Icon" type="Sprite2D" parent="Enemy2"]
+position = Vector2(0, -64)
+texture = ExtResource("2_4g1ya")
+
+[node name="Maemi" parent="." instance=ExtResource("3_ybaq0")]
+position = Vector2(-801, 160)
+
+[node name="DebugUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="DebugUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputDisplay" parent="DebugUI/Control" instance=ExtResource("5_jb78b")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -124.0
+offset_top = -86.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0

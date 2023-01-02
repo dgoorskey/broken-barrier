@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp348guvvd5t7"]
+
+[ext_resource type="Script" path="res://InteractionArea.gd" id="1_yecai"]
+
+[node name="InteractionArea" type="Area2D"]
+collision_layer = 32768
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_yecai")

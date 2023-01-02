@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwr3j85yhnxdm"]
+
+[ext_resource type="Script" path="res://scenes/components/input_buffer.gd" id="1_yelsf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jdji"]
+bg_color = Color(0, 0, 0, 0.784314)
+
+[node name="InputBuffer" type="Node"]
+script = ExtResource("1_yelsf")
+
+[node name="DebugUI" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="DebugUI"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_0jdji")
