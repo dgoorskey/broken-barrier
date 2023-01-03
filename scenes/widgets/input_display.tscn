@@ -3,75 +3,112 @@
 [ext_resource type="Script" path="res://scenes/widgets/input_display.gd" id="1_am2kf"]
 
 [node name="InputDisplay" type="HBoxContainer"]
+process_mode = 3
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_am2kf")
 
 [node name="A" type="Label" parent="."]
 custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+offset_top = 68.0
+offset_right = 64.0
+offset_bottom = 132.0
 text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="B" type="Label" parent="."]
 custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+offset_left = 68.0
+offset_top = 68.0
+offset_right = 132.0
+offset_bottom = 132.0
 text = "B"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 2
+offset_left = 136.0
+offset_right = 336.0
+offset_bottom = 200.0
 columns = 3
 
 [node name="Spacer" type="Control" parent="GridContainer"]
 custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 64.0
 
 [node name="Up" type="Label" parent="GridContainer"]
 custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+offset_left = 68.0
+offset_right = 132.0
+offset_bottom = 64.0
 text = "up"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Spacer2" type="Control" parent="GridContainer"]
 custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_left = 136.0
+offset_right = 200.0
+offset_bottom = 64.0
 
 [node name="Left" type="Label" parent="GridContainer"]
 custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+offset_top = 68.0
+offset_right = 64.0
+offset_bottom = 132.0
 text = "left"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Jump" type="Label" parent="GridContainer"]
 custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+offset_left = 68.0
+offset_top = 68.0
+offset_right = 132.0
+offset_bottom = 132.0
 text = "jump"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Right" type="Label" parent="GridContainer"]
 custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+offset_left = 136.0
+offset_top = 68.0
+offset_right = 200.0
+offset_bottom = 132.0
 text = "right"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Spacer4" type="Control" parent="GridContainer"]
 custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_top = 136.0
+offset_right = 64.0
+offset_bottom = 200.0
 
 [node name="Down" type="Label" parent="GridContainer"]
 custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+offset_left = 68.0
+offset_top = 136.0
+offset_right = 132.0
+offset_bottom = 200.0
 text = "down"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Spacer5" type="Control" parent="GridContainer"]
 custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_left = 136.0
+offset_top = 136.0
+offset_right = 200.0
+offset_bottom = 200.0
