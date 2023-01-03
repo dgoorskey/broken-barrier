@@ -1,24 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://dg6bsj6188yxf"]
+[gd_scene load_steps=6 format=3 uid="uid://dg6bsj6188yxf"]
 
 [ext_resource type="Script" path="res://scenes/screens/dialogue_screen.gd" id="1_nvb26"]
 [ext_resource type="Texture2D" uid="uid://bbuhtmw4f2nsa" path="res://icon.svg" id="2_uhl60"]
 [ext_resource type="Texture2D" uid="uid://30s7onh800ft" path="res://paint.net/character_icon_1.png" id="3_hyd4x"]
 [ext_resource type="Texture2D" uid="uid://bl0koufa5o6ig" path="res://paint.net/textbox.png" id="3_u1tam"]
 [ext_resource type="Texture2D" uid="uid://w7v70wcgdut1" path="res://paint.net/character_icon_2.png" id="4_j5exk"]
-[ext_resource type="Texture2D" uid="uid://xwdkii76s5lu" path="res://paint.net/textbox_arrow.png" id="6_f38if"]
 
 [node name="DialogueScreen" type="Node"]
 process_mode = 3
 script = ExtResource("1_nvb26")
 
 [node name="UI" type="CanvasLayer" parent="."]
-
-[node name="BackgroundTint" type="Panel" parent="UI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="BackgroundImage" type="PanelContainer" parent="UI"]
 visible = false
@@ -33,50 +25,71 @@ layout_mode = 2
 texture = ExtResource("2_uhl60")
 stretch_mode = 6
 
-[node name="CenterContainer" type="CenterContainer" parent="UI"]
+[node name="BackgroundTint" type="Panel" parent="UI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/CenterContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+[node name="CenterContainer2" type="CenterContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="UI/CenterContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/CenterContainer2"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/CenterContainer/MarginContainer/VBoxContainer/CenterContainer"]
-layout_mode = 2
-theme_override_constants/separation = 64
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
 
-[node name="LeftCharacter" type="TextureRect" parent="UI/CenterContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="LeftCharacter" type="TextureRect" parent="UI/HBoxContainer"]
+unique_name_in_owner = true
 texture_filter = 1
-custom_minimum_size = Vector2(256, 256)
+custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 texture = ExtResource("3_hyd4x")
 stretch_mode = 5
 
-[node name="RightCharacter" type="TextureRect" parent="UI/CenterContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="RightCharacter" type="TextureRect" parent="UI/HBoxContainer"]
+unique_name_in_owner = true
 texture_filter = 1
-custom_minimum_size = Vector2(256, 256)
+custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 texture = ExtResource("4_j5exk")
 stretch_mode = 5
 flip_h = true
 
-[node name="TextBox" type="PanelContainer" parent="UI/CenterContainer/MarginContainer/VBoxContainer"]
+[node name="TextBoxMargin" type="MarginContainer" parent="UI"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -261.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/TextBoxMargin"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="TextBox" type="PanelContainer" parent="UI/TextBoxMargin/VBoxContainer"]
 layout_mode = 2
 
-[node name="Background" type="NinePatchRect" parent="UI/CenterContainer/MarginContainer/VBoxContainer/TextBox"]
-texture_filter = 1
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/TextBoxMargin/VBoxContainer/TextBox"]
 layout_mode = 2
 texture = ExtResource("3_u1tam")
 patch_margin_left = 10
@@ -84,69 +97,103 @@ patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 
-[node name="TextMargin" type="MarginContainer" parent="UI/CenterContainer/MarginContainer/VBoxContainer/TextBox"]
+[node name="TextMargin" type="MarginContainer" parent="UI/TextBoxMargin/VBoxContainer/TextBox"]
 layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer/MarginContainer/VBoxContainer/TextBox/TextMargin"]
-layout_mode = 2
-
-[node name="Text" type="RichTextLabel" parent="UI/CenterContainer/MarginContainer/VBoxContainer/TextBox/TextMargin/VBoxContainer"]
+[node name="Text" type="RichTextLabel" parent="UI/TextBoxMargin/VBoxContainer/TextBox/TextMargin"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
 bbcode_enabled = true
-text = "Why are you here?"
+text = "Hello, world!"
 fit_content_height = true
 
-[node name="Arrow" type="TextureRect" parent="UI/CenterContainer/MarginContainer/VBoxContainer/TextBox/TextMargin/VBoxContainer"]
-visible = false
-texture_filter = 1
+[node name="OptionsBox" type="PanelContainer" parent="UI/TextBoxMargin/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 8
-texture = ExtResource("6_f38if")
 
-[node name="Options" type="GridContainer" parent="UI/CenterContainer/MarginContainer/VBoxContainer/TextBox/TextMargin/VBoxContainer"]
-visible = false
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/TextBoxMargin/VBoxContainer/OptionsBox"]
+layout_mode = 2
+texture = ExtResource("3_u1tam")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="TextMargin" type="MarginContainer" parent="UI/TextBoxMargin/VBoxContainer/OptionsBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="GridContainer" type="GridContainer" parent="UI/TextBoxMargin/VBoxContainer/OptionsBox/TextMargin"]
 layout_mode = 2
 columns = 2
 
-[node name="Option1" type="RichTextLabel" parent="UI/CenterContainer/MarginContainer/VBoxContainer/TextBox/TextMargin/VBoxContainer/Options"]
+[node name="Option1" type="RichTextLabel" parent="UI/TextBoxMargin/VBoxContainer/OptionsBox/TextMargin/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/default_color = Color(0, 1, 0, 1)
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
 bbcode_enabled = true
-text = "I fight for our freedom."
+text = "Option 1"
 fit_content_height = true
 
-[node name="Option2" type="RichTextLabel" parent="UI/CenterContainer/MarginContainer/VBoxContainer/TextBox/TextMargin/VBoxContainer/Options"]
+[node name="Option2" type="RichTextLabel" parent="UI/TextBoxMargin/VBoxContainer/OptionsBox/TextMargin/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/default_color = Color(0, 1, 0, 1)
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
 bbcode_enabled = true
-text = "It doesn't matter. Stand in my way and see what happens."
+text = "Option 2"
 fit_content_height = true
 
-[node name="Option3" type="RichTextLabel" parent="UI/CenterContainer/MarginContainer/VBoxContainer/TextBox/TextMargin/VBoxContainer/Options"]
+[node name="Option3" type="RichTextLabel" parent="UI/TextBoxMargin/VBoxContainer/OptionsBox/TextMargin/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/default_color = Color(0, 1, 0, 1)
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
 bbcode_enabled = true
-text = "Don't you see what you've become?"
+text = "Option 3"
 fit_content_height = true
 
-[node name="Option4" type="RichTextLabel" parent="UI/CenterContainer/MarginContainer/VBoxContainer/TextBox/TextMargin/VBoxContainer/Options"]
+[node name="Option4" type="RichTextLabel" parent="UI/TextBoxMargin/VBoxContainer/OptionsBox/TextMargin/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/default_color = Color(1, 0, 0, 1)
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
 bbcode_enabled = true
-text = "Walk away"
+text = "Option 4"
 fit_content_height = true
 
 [node name="InputCooldown" type="Timer" parent="."]

@@ -4,6 +4,7 @@ class_name DialogueScreen
 @export var next_dialogue_screen: DialogueScreen
 
 @onready var text: RichTextLabel = $%Text
+@onready var options_box := $%OptionsBox
 @onready var option_1: RichTextLabel = $%Option1
 @onready var option_2: RichTextLabel = $%Option2
 @onready var option_3: RichTextLabel = $%Option3
@@ -32,6 +33,11 @@ class DialogueLine:
 func show_dialogue_line(line: DialogueLine) -> void:
 	text.clear()
 	text.append_text("[b]%s:[/b] %s" % [line.speaker, line.line])
+	
+	if line.option_1 == "" and line.option_2 == "" and line.option_3 == "" and line.option_4 == "":
+		options_box.visible = false
+	else:
+		options_box.visible = true
 	
 	option_1.clear()
 	option_1.append_text(line.option_1)

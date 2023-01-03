@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://g0en3o10c8t2"]
+
+[ext_resource type="Script" path="res://scenes/components/max_size.gd" id="1_iq4ey"]
+
+[node name="MaxSize" type="Container"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_iq4ey")

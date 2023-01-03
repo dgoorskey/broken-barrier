@@ -37,7 +37,7 @@ _global_script_classes=[{
 "base": "Area2D",
 "class": &"InteractionArea",
 "language": &"GDScript",
-"path": "res://InteractionArea.gd"
+"path": "res://scenes/components/interaction_area.gd"
 }, {
 "base": "Node",
 "class": &"InteractionDialogue",
