@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dg6bsj6188yxf"]
+[gd_scene load_steps=7 format=3 uid="uid://dg6bsj6188yxf"]
 
 [ext_resource type="Script" path="res://scenes/screens/dialogue_screen.gd" id="1_nvb26"]
 [ext_resource type="Texture2D" uid="uid://bbuhtmw4f2nsa" path="res://icon.svg" id="2_uhl60"]
 [ext_resource type="Texture2D" uid="uid://30s7onh800ft" path="res://paint.net/character_icon_1.png" id="3_hyd4x"]
 [ext_resource type="Texture2D" uid="uid://bl0koufa5o6ig" path="res://paint.net/textbox.png" id="3_u1tam"]
 [ext_resource type="Texture2D" uid="uid://w7v70wcgdut1" path="res://paint.net/character_icon_2.png" id="4_j5exk"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_282tx"]
+load_path = "res://.godot/imported/textbox.png-20b8745e4bfd6780453ea28239731bcb.ctex"
 
 [node name="DialogueScreen" type="Node"]
 process_mode = 3
@@ -123,7 +126,7 @@ layout_mode = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI/TextBoxMargin/VBoxContainer/OptionsBox"]
 layout_mode = 2
-texture = ExtResource("3_u1tam")
+texture = SubResource("CompressedTexture2D_282tx")
 patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
