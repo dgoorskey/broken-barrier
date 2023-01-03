@@ -31,7 +31,7 @@ class DialogueLine:
 
 func show_dialogue_line(line: DialogueLine) -> void:
 	text.clear()
-	text.append_text(line.line)
+	text.append_text("[b]%s:[/b] %s" % [line.speaker, line.line])
 	
 	option_1.clear()
 	option_1.append_text(line.option_1)
@@ -90,6 +90,7 @@ func _on_input_cooldown_timeout() -> void:
 
 @onready var ui: CanvasLayer = $UI
 func start() -> void:
+	# Prevent weird input issues
 	Input.action_release("p1_a")
 	Input.flush_buffered_events()
 	
