@@ -1,5 +1,25 @@
 [
-	{"name": "maemi", "text": "Hello, world!"},
-	{"name": "ghostly_figure", "text": "Hello maemi!"},
-	{"name": "maemi", "text": "How are you?"}
+	{
+		"speaker": "Maemi",
+		"line": "Hello!", 
+		"left": "res://paint.net/character_1_idle.png",
+		"right": "res://paint.net/character_2_idle.png"
+	},
+	{
+		"speaker": "Bystander",
+		"line": "What are you doing here?",
+		"option1": "What are [b]you[/b] doing here!?",
+		"target1": "res://dialogue/what_are_you_doing_here.json",
+		"option2": "your mom",
+		"target2": "res://dialogue/your_mom.json",
+		"option3": "Don't worry about it."
+	},
+	{
+		"speaker": "Maemi",
+		"line": "Don't worry about it."
+	},
+	{
+		"speaker": "Bystander",
+		"line": "Alright then."
+	}
 ]

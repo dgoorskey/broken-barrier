@@ -1,0 +1,16 @@
+[
+	{
+		"speaker": "Maemi",
+		"line": "What are [b]you[/b] doing here!?", 
+		"left": "res://paint.net/character_1_idle.png",
+		"right": "res://paint.net/character_2_idle.png"
+	},
+	{
+		"speaker": "Bystander",
+		"line": "..."
+	},
+	{
+		"speaker": "Maemi",
+		"line": "Exactly. Mind your own business."
+	}
+]

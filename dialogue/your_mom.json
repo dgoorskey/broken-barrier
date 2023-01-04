@@ -1,0 +1,20 @@
+[
+    {
+		"speaker": "Maemi",
+		"line": "your mom",
+        "left": "res://paint.net/character_1_troll.png",
+		"right": "res://paint.net/character_2_idle.png"
+	},
+	{
+		"speaker": "Bystander",
+		"line": "wtf!!!"
+	},
+	{
+		"speaker": "Bystander",
+		"line": "Leave me alone."
+	},
+    {
+        "speaker": "Maemi",
+        "line": "ok bye"
+    }
+]

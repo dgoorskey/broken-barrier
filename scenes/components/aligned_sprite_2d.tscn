@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca08f0lgisd4t"]
+
+[ext_resource type="Script" path="res://scenes/components/aligned_sprite_2d.gd" id="1_tmdfh"]
+
+[node name="AlignedSprite2D" type="Sprite2D"]
+centered = false
+script = ExtResource("1_tmdfh")

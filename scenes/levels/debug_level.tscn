@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ba64gbg3b1pas" path="res://scenes/components/interaction_dialogue.tscn" id="5_d503c"]
 [ext_resource type="PackedScene" uid="uid://dnnk86d2gqm2i" path="res://scenes/widgets/input_display.tscn" id="5_jb78b"]
 [ext_resource type="PackedScene" uid="uid://dv81w2w8c4ys3" path="res://scenes/components/interaction_hover_visibility.tscn" id="6_86x54"]
-[ext_resource type="PackedScene" uid="uid://dg6bsj6188yxf" path="res://scenes/screens/dialogue_screen.tscn" id="9_1hstj"]
+[ext_resource type="PackedScene" uid="uid://cd2riq6hiri11" path="res://scenes/screens/dialogue_screen.tscn" id="9_1hstj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y8x6a"]
 radius = 32.0
@@ -108,8 +108,9 @@ position = Vector2(0, -64)
 texture = ExtResource("2_4g1ya")
 
 [node name="InteractionDialogue" parent="Enemy1" node_paths=PackedStringArray("interaction_area", "dialogue_screen") instance=ExtResource("5_d503c")]
+json_file = "res://dialogue/debug_level.json"
 interaction_area = NodePath("../InteractionArea")
-dialogue_screen = NodePath("../DialogueScreen")
+dialogue_screen = NodePath("../../DialogueScreen")
 
 [node name="InteractionHoverVisibility" parent="Enemy1" node_paths=PackedStringArray("interaction_area") instance=ExtResource("6_86x54")]
 interaction_area = NodePath("../InteractionArea")
@@ -129,8 +130,6 @@ size_flags_horizontal = 4
 text = "talk (a)"
 horizontal_alignment = 1
 vertical_alignment = 2
-
-[node name="DialogueScreen" parent="Enemy1" instance=ExtResource("9_1hstj")]
 
 [node name="Enemy2" type="StaticBody2D" parent="."]
 position = Vector2(128, 256)
@@ -159,6 +158,8 @@ texture = ExtResource("2_4g1ya")
 [node name="Maemi" parent="." instance=ExtResource("3_ybaq0")]
 position = Vector2(-801, 160)
 
+[node name="DialogueScreen" parent="." instance=ExtResource("9_1hstj")]
+
 [node name="DebugUI" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="DebugUI"]
@@ -168,6 +169,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="InputDisplay" parent="DebugUI/Control" instance=ExtResource("5_jb78b")]
 anchors_preset = 3

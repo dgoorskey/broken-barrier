@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dg6bsj6188yxf"]
+[gd_scene load_steps=7 format=3 uid="uid://cd2riq6hiri11"]
 
 [ext_resource type="Script" path="res://scenes/screens/dialogue_screen.gd" id="1_nvb26"]
-[ext_resource type="Texture2D" uid="uid://bbuhtmw4f2nsa" path="res://icon.svg" id="2_uhl60"]
-[ext_resource type="Texture2D" uid="uid://30s7onh800ft" path="res://paint.net/character_icon_1.png" id="3_hyd4x"]
+[ext_resource type="Texture2D" uid="uid://30s7onh800ft" path="res://paint.net/character_1_idle.png" id="2_lf0xu"]
+[ext_resource type="Texture2D" uid="uid://w7v70wcgdut1" path="res://paint.net/character_2_idle.png" id="3_f3ppd"]
 [ext_resource type="Texture2D" uid="uid://bl0koufa5o6ig" path="res://paint.net/textbox.png" id="3_u1tam"]
-[ext_resource type="Texture2D" uid="uid://w7v70wcgdut1" path="res://paint.net/character_icon_2.png" id="4_j5exk"]
+[ext_resource type="PackedScene" uid="uid://cbberq0ank6ep" path="res://scenes/widgets/rich_text_button.tscn" id="5_hqora"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_282tx"]
 load_path = "res://.godot/imported/textbox.png-20b8745e4bfd6780453ea28239731bcb.ctex"
@@ -15,19 +15,6 @@ script = ExtResource("1_nvb26")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="BackgroundImage" type="PanelContainer" parent="UI"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/BackgroundImage"]
-layout_mode = 2
-texture = ExtResource("2_uhl60")
-stretch_mode = 6
-
 [node name="BackgroundTint" type="Panel" parent="UI"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,64 +22,54 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer2" type="CenterContainer" parent="UI"]
+[node name="Window" type="PanelContainer" parent="UI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/CenterContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Window"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-
-[node name="LeftCharacter" type="TextureRect" parent="UI/HBoxContainer"]
-unique_name_in_owner = true
-texture_filter = 1
-custom_minimum_size = Vector2(512, 0)
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="UI/Window/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("3_hyd4x")
-stretch_mode = 5
+stretch_mode = 1
 
-[node name="RightCharacter" type="TextureRect" parent="UI/HBoxContainer"]
+[node name="LeftCharacter" type="TextureRect" parent="UI/Window/HBoxContainer/AspectRatioContainer"]
 unique_name_in_owner = true
 texture_filter = 1
-custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+texture = ExtResource("2_lf0xu")
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="UI/Window/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("4_j5exk")
-stretch_mode = 5
+stretch_mode = 1
+
+[node name="RightCharacter" type="TextureRect" parent="UI/Window/HBoxContainer/AspectRatioContainer2"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_f3ppd")
 flip_h = true
 
-[node name="TextBoxMargin" type="MarginContainer" parent="UI"]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -261.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="MarginContainer" type="MarginContainer" parent="UI/Window"]
+layout_mode = 2
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/TextBoxMargin"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Window/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="TextBox" type="PanelContainer" parent="UI/TextBoxMargin/VBoxContainer"]
+[node name="TextBox" type="PanelContainer" parent="UI/Window/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="UI/TextBoxMargin/VBoxContainer/TextBox"]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Window/MarginContainer/VBoxContainer/TextBox"]
 layout_mode = 2
 texture = ExtResource("3_u1tam")
 patch_margin_left = 10
@@ -100,14 +77,14 @@ patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 
-[node name="TextMargin" type="MarginContainer" parent="UI/TextBoxMargin/VBoxContainer/TextBox"]
+[node name="TextMargin" type="MarginContainer" parent="UI/Window/MarginContainer/VBoxContainer/TextBox"]
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="Text" type="RichTextLabel" parent="UI/TextBoxMargin/VBoxContainer/TextBox/TextMargin"]
+[node name="Text" type="RichTextLabel" parent="UI/Window/MarginContainer/VBoxContainer/TextBox/TextMargin"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
@@ -120,11 +97,11 @@ bbcode_enabled = true
 text = "Hello, world!"
 fit_content_height = true
 
-[node name="OptionsBox" type="PanelContainer" parent="UI/TextBoxMargin/VBoxContainer"]
+[node name="OptionsBox" type="PanelContainer" parent="UI/Window/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="UI/TextBoxMargin/VBoxContainer/OptionsBox"]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Window/MarginContainer/VBoxContainer/OptionsBox"]
 layout_mode = 2
 texture = SubResource("CompressedTexture2D_282tx")
 patch_margin_left = 10
@@ -132,76 +109,63 @@ patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 
-[node name="TextMargin" type="MarginContainer" parent="UI/TextBoxMargin/VBoxContainer/OptionsBox"]
+[node name="TextMargin" type="MarginContainer" parent="UI/Window/MarginContainer/VBoxContainer/OptionsBox"]
 layout_mode = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="GridContainer" type="GridContainer" parent="UI/TextBoxMargin/VBoxContainer/OptionsBox/TextMargin"]
+[node name="GridContainer" type="GridContainer" parent="UI/Window/MarginContainer/VBoxContainer/OptionsBox/TextMargin"]
 layout_mode = 2
 columns = 2
 
-[node name="Option1" type="RichTextLabel" parent="UI/TextBoxMargin/VBoxContainer/OptionsBox/TextMargin/GridContainer"]
+[node name="Option1" parent="UI/Window/MarginContainer/VBoxContainer/OptionsBox/TextMargin/GridContainer" node_paths=PackedStringArray("first_button") instance=ExtResource("5_hqora")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
-theme_override_font_sizes/italics_font_size = 24
-theme_override_font_sizes/bold_italics_font_size = 24
-theme_override_font_sizes/mono_font_size = 24
-bbcode_enabled = true
-text = "Option 1"
-fit_content_height = true
+focus_next = NodePath("../Option2")
+focus_previous = NodePath("../Option4")
+first_button = NodePath(".")
 
-[node name="Option2" type="RichTextLabel" parent="UI/TextBoxMargin/VBoxContainer/OptionsBox/TextMargin/GridContainer"]
+[node name="Option2" parent="UI/Window/MarginContainer/VBoxContainer/OptionsBox/TextMargin/GridContainer" node_paths=PackedStringArray("first_button") instance=ExtResource("5_hqora")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
-theme_override_font_sizes/italics_font_size = 24
-theme_override_font_sizes/bold_italics_font_size = 24
-theme_override_font_sizes/mono_font_size = 24
-bbcode_enabled = true
-text = "Option 2"
-fit_content_height = true
+focus_next = NodePath("../Option3")
+focus_previous = NodePath("../Option1")
+first_button = NodePath("../Option1")
 
-[node name="Option3" type="RichTextLabel" parent="UI/TextBoxMargin/VBoxContainer/OptionsBox/TextMargin/GridContainer"]
+[node name="Option3" parent="UI/Window/MarginContainer/VBoxContainer/OptionsBox/TextMargin/GridContainer" node_paths=PackedStringArray("first_button") instance=ExtResource("5_hqora")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
-theme_override_font_sizes/italics_font_size = 24
-theme_override_font_sizes/bold_italics_font_size = 24
-theme_override_font_sizes/mono_font_size = 24
-bbcode_enabled = true
-text = "Option 3"
-fit_content_height = true
+focus_next = NodePath("../Option4")
+focus_previous = NodePath("../Option2")
+first_button = NodePath("../Option1")
 
-[node name="Option4" type="RichTextLabel" parent="UI/TextBoxMargin/VBoxContainer/OptionsBox/TextMargin/GridContainer"]
+[node name="Option4" parent="UI/Window/MarginContainer/VBoxContainer/OptionsBox/TextMargin/GridContainer" node_paths=PackedStringArray("first_button") instance=ExtResource("5_hqora")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
-theme_override_font_sizes/italics_font_size = 24
-theme_override_font_sizes/bold_italics_font_size = 24
-theme_override_font_sizes/mono_font_size = 24
-bbcode_enabled = true
-text = "Option 4"
-fit_content_height = true
+focus_next = NodePath("../Option1")
+focus_previous = NodePath("../Option3")
+first_button = NodePath("../Option1")
+
+[node name="CenterContainer" type="CenterContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="InputCooldown" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 autostart = true
 
+[connection signal="pressed" from="UI/Window/MarginContainer/VBoxContainer/OptionsBox/TextMargin/GridContainer/Option1" to="." method="_on_option_1_pressed"]
+[connection signal="pressed" from="UI/Window/MarginContainer/VBoxContainer/OptionsBox/TextMargin/GridContainer/Option2" to="." method="_on_option_2_pressed"]
+[connection signal="pressed" from="UI/Window/MarginContainer/VBoxContainer/OptionsBox/TextMargin/GridContainer/Option3" to="." method="_on_option_3_pressed"]
+[connection signal="pressed" from="UI/Window/MarginContainer/VBoxContainer/OptionsBox/TextMargin/GridContainer/Option4" to="." method="_on_option_4_pressed"]
 [connection signal="timeout" from="InputCooldown" to="." method="_on_input_cooldown_timeout"]

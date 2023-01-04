@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbberq0ank6ep"]
+
+[ext_resource type="Script" path="res://scenes/widgets/rich_text_button.gd" id="1_6scad"]
+[ext_resource type="Texture2D" uid="uid://bl0koufa5o6ig" path="res://paint.net/textbox.png" id="2_0uov1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ttqh1"]
+
+[node name="RichTextButton" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ttqh1")
+script = ExtResource("1_6scad")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+visible = false
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 168.0
+texture = ExtResource("2_0uov1")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 168.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 24.0
+offset_bottom = 152.0
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+text = "Text"
+fit_content_height = true
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

@@ -1,14 +1,16 @@
 extends Screen
 class_name DialogueScreen
 
-@export var next_dialogue_screen: DialogueScreen
-
 @onready var text: RichTextLabel = $%Text
 @onready var options_box := $%OptionsBox
-@onready var option_1: RichTextLabel = $%Option1
-@onready var option_2: RichTextLabel = $%Option2
-@onready var option_3: RichTextLabel = $%Option3
-@onready var option_4: RichTextLabel = $%Option4
+@onready var option_1: DialogueOption = $%Option1
+@onready var option_2: DialogueOption = $%Option2
+@onready var option_3: DialogueOption = $%Option3
+@onready var option_4: DialogueOption = $%Option4
+@onready var left_character: TextureRect = $%LeftCharacter
+@onready var right_character: TextureRect = $%RightCharacter
+
+var is_options := false # True if options are visible and one must be chosen.
 
 class DialogueLine:
 	var id := ""      # (optional) Unique id of this DialogueLine
@@ -27,26 +29,30 @@ class DialogueLine:
 	var option_4 := ""
 	var option_4_target := ""
 	
-	var left_character_icon := "res://paint.net/character_icon_1.png"
-	var right_character_icon := "res://paint.net/character_icon_2.png"
+	var left_character_sprite := "res://paint.net/character_icon_1.png"
+	var right_character_sprite := "res://paint.net/character_icon_2.png"
 
 func show_dialogue_line(line: DialogueLine) -> void:
 	text.clear()
 	text.append_text("[b]%s:[/b] %s" % [line.speaker, line.line])
 	
 	if line.option_1 == "" and line.option_2 == "" and line.option_3 == "" and line.option_4 == "":
+		is_options = false
 		options_box.visible = false
 	else:
+		is_options = true
 		options_box.visible = true
 	
-	option_1.clear()
-	option_1.append_text(line.option_1)
-	option_2.clear()
-	option_2.append_text(line.option_2)
-	option_3.clear()
-	option_3.append_text(line.option_3)
-	option_4.clear()
-	option_4.append_text(line.option_4)
+	if line.left_character_sprite != "":
+		left_character.texture = load(line.left_character_sprite)
+	if line.right_character_sprite != "":
+		right_character.texture = load(line.right_character_sprite)
+	
+	option_1.set_text(line.option_1)
+	option_2.set_text(line.option_2)
+	option_3.set_text(line.option_3)
+	option_4.set_text(line.option_4)
+	option_1.grab_focus.call_deferred()
 
 var dialogue_lines: Array[DialogueLine] = []
 var current_dialogue_line_idx := 0
@@ -85,10 +91,11 @@ func _process(delta: float) -> void:
 	if not can_accept_input:
 		return
 	
-	if Input.is_action_just_pressed("p1_a"):
-		can_accept_input = false
-		input_cooldown.start()
-		next_line()
+	if not is_options:
+		if Input.is_action_just_pressed("p1_a"):
+			can_accept_input = false
+			input_cooldown.start()
+			next_line()
 
 var can_accept_input := false
 func _on_input_cooldown_timeout() -> void:
@@ -118,3 +125,68 @@ func stop() -> void:
 	# Unpause, and hide
 	get_tree().paused = false
 	ui.visible = false
+
+func load_json(path: String) -> void:
+	dialogue_lines.clear()
+	current_dialogue_line_idx = 0
+	
+	var file := FileAccess.open(path, FileAccess.READ)
+	var data: Array[Dictionary] = JSON.parse_string(file.get_as_text(true))
+	
+	for line_data in data:
+		var dialogue_line := DialogueLine.new()
+		print(line_data)
+		dialogue_line.speaker = line_data.get("speaker", "")
+		dialogue_line.line = line_data.get("line", "")
+		dialogue_line.left_character_sprite = line_data.get("left", "")
+		dialogue_line.right_character_sprite = line_data.get("right", "")
+		
+		dialogue_line.option_1 = line_data.get("option1", "")
+		dialogue_line.option_1_target = line_data.get("target1", "")
+		dialogue_line.option_2 = line_data.get("option2", "")
+		dialogue_line.option_2_target = line_data.get("target2", "")
+		dialogue_line.option_3 = line_data.get("option3", "")
+		dialogue_line.option_3_target = line_data.get("target3", "")
+		dialogue_line.option_4 = line_data.get("option4", "")
+		dialogue_line.option_4_target = line_data.get("target4", "")
+		
+		dialogue_lines.append(dialogue_line)
+
+
+
+
+func _on_option_1_pressed() -> void:
+	var dialogue_line := dialogue_lines[current_dialogue_line_idx]
+	var target := dialogue_line.option_1_target
+	if target == "":
+		next_line()
+	else:
+		load_json(target)
+		start()
+
+func _on_option_2_pressed() -> void:
+	var dialogue_line := dialogue_lines[current_dialogue_line_idx]
+	var target := dialogue_line.option_2_target
+	if target == "":
+		next_line()
+	else:
+		load_json(target)
+		start()
+
+func _on_option_3_pressed() -> void:
+	var dialogue_line := dialogue_lines[current_dialogue_line_idx]
+	var target := dialogue_line.option_3_target
+	if target == "":
+		next_line()
+	else:
+		load_json(target)
+		start()
+
+func _on_option_4_pressed() -> void:
+	var dialogue_line := dialogue_lines[current_dialogue_line_idx]
+	var target := dialogue_line.option_4_target
+	if target == "":
+		next_line()
+	else:
+		load_json(target)
+		start()

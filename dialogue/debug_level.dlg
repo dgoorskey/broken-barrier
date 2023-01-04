@@ -1,0 +1,48 @@
+# This is a syntax prototype of a DSL for writing game dialogues.
+
+= left maemi_excited.png
+= right bystander_idle.png
+say Maemi Hello, world!"
+
+= right bystander_confused.png
+say Bystander ...what
+
+= left maemi_bruh.png
+say Maemi What.
+
+= left maemi_bruh.png
+say Bystander Why did you say that?
+
+= left maemi_thinking.png
+say Maemi I don't know... It's just something to say.
+
+= left maemi_idle.png
+= right bystander_idle.png
+say Bystander Fair enough.
+
+
+
+
+
+
+# This is another syntax prototype.
+# LEFT SPRITE       RIGHT SPRITE            SPEAKER         LINE
+excited             idle                    Maemi           Hello, world!
+-                   confused                Bystander       ...what
+bruh                -                       Maemi           What.
+-                   -                       Bystander       Why did you say that?
+thinking            -                       Maemi           I don't know... It's just something to say.
+-                   idle                    Bystander       Fair enough.
+
+
+
+# This is another syntax prototype.
+
+Maemi: "Hello, world!"
+    left: maemi_excited.png
+    right: bystander_idle.png
+Bystander: ...what
+    left: bystander_confused.png
+Maemi: What.
+    right: maemi_bruh.png
+Bystander: Why did you say that?
