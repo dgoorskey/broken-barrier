@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dhac0valr32dl"
+path="res://.godot/imported/BoogieDown Brawl - Street Level (Piano & Organ).ogg-0c5139db00f7708a40c3fcd1dcf8d66a.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/BoogieDown Brawl - Street Level (Piano & Organ).ogg"
+dest_files=["res://.godot/imported/BoogieDown Brawl - Street Level (Piano & Organ).ogg-0c5139db00f7708a40c3fcd1dcf8d66a.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

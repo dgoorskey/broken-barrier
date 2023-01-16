@@ -96,6 +96,9 @@ func _process(delta: float) -> void:
 			can_accept_input = false
 			input_cooldown.start()
 			next_line()
+	
+	SoundScript.SetGameState("TalkingNormal")
+	
 
 var can_accept_input := false
 func _on_input_cooldown_timeout() -> void:
@@ -151,6 +154,8 @@ func load_json(path: String) -> void:
 		dialogue_line.option_4_target = line_data.get("target4", "")
 		
 		dialogue_lines.append(dialogue_line)
+	
+	
 
 
 
@@ -158,6 +163,7 @@ func load_json(path: String) -> void:
 func _on_option_1_pressed() -> void:
 	var dialogue_line := dialogue_lines[current_dialogue_line_idx]
 	var target := dialogue_line.option_1_target
+	SoundScript.SetGameState("BossFight")
 	if target == "":
 		next_line()
 	else:
@@ -167,6 +173,7 @@ func _on_option_1_pressed() -> void:
 func _on_option_2_pressed() -> void:
 	var dialogue_line := dialogue_lines[current_dialogue_line_idx]
 	var target := dialogue_line.option_2_target
+
 	if target == "":
 		next_line()
 	else:
@@ -176,6 +183,7 @@ func _on_option_2_pressed() -> void:
 func _on_option_3_pressed() -> void:
 	var dialogue_line := dialogue_lines[current_dialogue_line_idx]
 	var target := dialogue_line.option_3_target
+
 	if target == "":
 		next_line()
 	else:

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bidyu8xg3dfr2"
+path="res://.godot/imported/BoogieDown Brawl - Bronson's Theme.ogg-276c4d02fc4b32c945424da5d9eb3d63.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/BoogieDown Brawl - Bronson's Theme.ogg"
+dest_files=["res://.godot/imported/BoogieDown Brawl - Bronson's Theme.ogg-276c4d02fc4b32c945424da5d9eb3d63.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
