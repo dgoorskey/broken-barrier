@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ov5xbo4t5khy"
+path="res://.godot/imported/BoogieDown Brawl - Street Level (Bass).ogg-9423812a257f82cea1fe6abf971b7cec.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/BoogieDown Brawl - Street Level (Bass).ogg"
+dest_files=["res://.godot/imported/BoogieDown Brawl - Street Level (Bass).ogg-9423812a257f82cea1fe6abf971b7cec.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
