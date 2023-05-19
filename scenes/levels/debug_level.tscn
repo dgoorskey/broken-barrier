@@ -85,6 +85,7 @@ polygon = PackedVector2Array(0, -128, 64, -64, 64, 64, 0, 0)
 color = Color(0.392157, 0.392157, 0.392157, 1)
 
 [node name="BoxTop" parent="Box2" instance=ExtResource("4_cy5cc")]
+visible = false
 position = Vector2(-256, 192)
 polygon = PackedVector2Array(0, 0, 128, 0, 192, 64, 64, 64)
 color = Color(0.784314, 0.784314, 0.784314, 1)

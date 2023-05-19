@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cgx3vgguli5c0"
+path="res://.godot/imported/BoogieDown Brawl - Main Menu Theme.ogg-4456d4d916eeb42b7ce77b8ad292666d.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/BoogieDown Brawl - Main Menu Theme.ogg"
+dest_files=["res://.godot/imported/BoogieDown Brawl - Main Menu Theme.ogg-4456d4d916eeb42b7ce77b8ad292666d.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

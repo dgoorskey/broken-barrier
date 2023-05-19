@@ -1,7 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjtniot8asb8b"]
+[gd_scene load_steps=6 format=3 uid="uid://cjtniot8asb8b"]
 
 [ext_resource type="PackedScene" uid="uid://bm6duqip5jwso" path="res://scenes/screens/title_screen.tscn" id="1_svp5s"]
+[ext_resource type="AudioStream" uid="uid://cgx3vgguli5c0" path="res://music/BoogieDown Brawl - Main Menu Theme.ogg" id="2_ln7vs"]
+[ext_resource type="AudioStream" uid="uid://c81yysj5uc4nv" path="res://music/BoogieDown Brawl - Street Level (All Enemies).ogg" id="2_wuhgi"]
+[ext_resource type="AudioStream" uid="uid://bx8xhp2sgoo7c" path="res://music/BoogieDown Brawl - Small Talk.ogg" id="3_kt6lr"]
+[ext_resource type="AudioStream" uid="uid://ncwjd4jbybqj" path="res://music/BoogieDown Brawl - Love Theme.ogg" id="4_ug8dr"]
 
 [node name="Main" type="Node"]
 
 [node name="TitleScreen" parent="." instance=ExtResource("1_svp5s")]
+
+[node name="Music Handler" type="Node" parent="."]
+
+[node name="Menu" type="AudioStreamPlayer" parent="Music Handler"]
+stream = ExtResource("2_ln7vs")
+
+[node name="Background" type="AudioStreamPlayer" parent="Music Handler"]
+stream = ExtResource("2_wuhgi")
+
+[node name="NormalDialogue" type="AudioStreamPlayer" parent="Music Handler"]
+stream = ExtResource("3_kt6lr")
+
+[node name="SpecificDialogue" type="AudioStreamPlayer" parent="Music Handler"]
+stream = ExtResource("4_ug8dr")
+
+[node name="Fight1" type="AudioStreamPlayer2D" parent="Music Handler"]
+
+[node name="Fight2" type="AudioStreamPlayer2D" parent="Music Handler"]
+
+[node name="Fight3" type="AudioStreamPlayer2D" parent="Music Handler"]
+
+[node name="Fight4" type="AudioStreamPlayer2D" parent="Music Handler"]
+
+[node name="SFX1" type="AudioStreamPlayer2D" parent="Music Handler"]
+
+[node name="SFX2" type="AudioStreamPlayer2D" parent="Music Handler"]

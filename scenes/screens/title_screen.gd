@@ -9,3 +9,6 @@ func _on_play_pressed() -> void:
 func _on_settings_pressed() -> void:
 	var screen: Screen = OPTIONS_SCREEN.instantiate()
 	change_screen(screen)
+
+func _process(delta):
+	SoundScript.SetGameState("Menu")
