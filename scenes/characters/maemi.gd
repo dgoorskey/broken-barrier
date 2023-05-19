@@ -3,11 +3,18 @@ extends CharacterBody2D
 @export var movement: Movement2D
 @export var jump: Jump2D
 @export var interactor: Interactor
+@export var input_buffer: InputBuffer
+@export var animator: AnimationTree
 
 @onready var flip2d_1: Flip2D = $Flip2D
 @onready var flip2d_2: Flip2D = $Movement2D/Flip2D
 
+func _ready() -> void:
+	$AnimationTree.active = true
+
 func _physics_process(delta: float) -> void:
+	
+	handle_moves()
 	
 	if movement.is_on_ground():
 		
@@ -48,3 +55,20 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("p1_a"):
 		interactor.interact()
+
+@onready var state_machine: AnimationNodeStateMachinePlayback = animator["parameters/playback"]
+func handle_moves() -> void:
+	var current_move := state_machine.get_current_node()
+	
+	# Punch
+	if current_move == "idle" and input_buffer.starts_with(input_buffer.buffer, ["a"]):
+		input_buffer.consume()
+		state_machine.travel("punch")
+	
+	# Kick
+	if current_move == "idle" and input_buffer.starts_with(input_buffer.buffer, ["b"]):
+		input_buffer.consume()
+		state_machine.travel("kick")
+	
+#	$DebugUI/Label.text = $AnimationPlayer.current_animation
+	$DebugUI/Label.text = state_machine.get_current_node()

@@ -8,100 +8,6 @@
 
 config_version=5
 
-_global_script_classes=[{
-"base": "Sprite2D",
-"class": &"AlignedSprite2D",
-"language": &"GDScript",
-"path": "res://scenes/components/aligned_sprite_2d.gd"
-}, {
-"base": "Node",
-"class": &"Dialogue",
-"language": &"GDScript",
-"path": "res://scenes/components/dialogue.gd"
-}, {
-"base": "Area2D",
-"class": &"DialogueInteractionArea",
-"language": &"GDScript",
-"path": "res://scenes/components/dialog_interaction_area.gd"
-}, {
-"base": "PanelContainer",
-"class": &"DialogueOption",
-"language": &"GDScript",
-"path": "res://scenes/widgets/rich_text_button.gd"
-}, {
-"base": "Screen",
-"class": &"DialogueScreen",
-"language": &"GDScript",
-"path": "res://scenes/screens/dialogue_screen.gd"
-}, {
-"base": "Node2D",
-"class": &"Flip2D",
-"language": &"GDScript",
-"path": "res://scenes/components/flip_2d.gd"
-}, {
-"base": "Node",
-"class": &"InputBuffer",
-"language": &"GDScript",
-"path": "res://scenes/components/input_buffer.gd"
-}, {
-"base": "Area2D",
-"class": &"InteractionArea",
-"language": &"GDScript",
-"path": "res://scenes/components/interaction_area.gd"
-}, {
-"base": "Node",
-"class": &"InteractionDialogue",
-"language": &"GDScript",
-"path": "res://scenes/components/interaction_dialogue.gd"
-}, {
-"base": "Node2D",
-"class": &"InteractionHoverVisibility",
-"language": &"GDScript",
-"path": "res://scenes/components/interaction_hover_visibility.gd"
-}, {
-"base": "Area2D",
-"class": &"Interactor",
-"language": &"GDScript",
-"path": "res://scenes/components/interactor.gd"
-}, {
-"base": "Node2D",
-"class": &"Jump2D",
-"language": &"GDScript",
-"path": "res://scenes/components/jump_2d.gd"
-}, {
-"base": "Node2D",
-"class": &"Level",
-"language": &"GDScript",
-"path": "res://scenes/components/level.gd"
-}, {
-"base": "Node2D",
-"class": &"Movement2D",
-"language": &"GDScript",
-"path": "res://scenes/components/movement_2d.gd"
-}, {
-"base": "Node",
-"class": &"Screen",
-"language": &"GDScript",
-"path": "res://scenes/components/screen.gd"
-}]
-_global_script_class_icons={
-"AlignedSprite2D": "",
-"Dialogue": "",
-"DialogueInteractionArea": "",
-"DialogueOption": "",
-"DialogueScreen": "",
-"Flip2D": "",
-"InputBuffer": "",
-"InteractionArea": "",
-"InteractionDialogue": "",
-"InteractionHoverVisibility": "",
-"Interactor": "",
-"Jump2D": "",
-"Level": "",
-"Movement2D": "",
-"Screen": ""
-}
-
 [application]
 
 config/name="broken-barrier"
@@ -111,43 +17,44 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Game="*res://autoloads/game.gd"
 Story="*res://autoloads/story.gd"
 
 [input]
 
 p1_a={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":74,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":74,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 p1_b={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":75,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":75,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 p1_left={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 p1_right={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 p1_up={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 p1_down={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 p1_jump={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 

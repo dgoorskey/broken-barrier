@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://drnfnw4wrvp77"]
+[gd_scene load_steps=25 format=3 uid="uid://drnfnw4wrvp77"]
 
 [ext_resource type="PackedScene" uid="uid://2faqg6de4wtl" path="res://scenes/components/movement_2d.tscn" id="1_gl1ue"]
 [ext_resource type="Script" path="res://scenes/characters/maemi.gd" id="1_tus7m"]
@@ -15,11 +15,71 @@ height = 128.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n2nod"]
 size = Vector2(64, 64)
 
-[node name="Maemi" type="CharacterBody2D" node_paths=PackedStringArray("movement", "jump", "interactor")]
+[sub_resource type="Animation" id="Animation_utg8m"]
+resource_name = "idle"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_7j12l"]
+resource_name = "kick"
+
+[sub_resource type="Animation" id="Animation_erang"]
+resource_name = "punch"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jsy5x"]
+_data = {
+"idle": SubResource("Animation_utg8m"),
+"kick": SubResource("Animation_7j12l"),
+"punch": SubResource("Animation_erang")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fm0tt"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_px4g1"]
+animation = &"kick"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3jfqn"]
+animation = &"punch"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w4lx2"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4imla"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ieg74"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r1ql0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8pec1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ypp6s"]
+states/End/position = Vector2(321, -30)
+states/Start/position = Vector2(223, -30)
+states/idle/node = SubResource("AnimationNodeAnimation_fm0tt")
+states/idle/position = Vector2(223, 44)
+states/kick/node = SubResource("AnimationNodeAnimation_px4g1")
+states/kick/position = Vector2(321, 125)
+states/punch/node = SubResource("AnimationNodeAnimation_3jfqn")
+states/punch/position = Vector2(223, 125)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_w4lx2"), "idle", "punch", SubResource("AnimationNodeStateMachineTransition_4imla"), "punch", "idle", SubResource("AnimationNodeStateMachineTransition_ieg74"), "idle", "kick", SubResource("AnimationNodeStateMachineTransition_r1ql0"), "kick", "idle", SubResource("AnimationNodeStateMachineTransition_8pec1")]
+graph_offset = Vector2(-80, -99)
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_kjjio"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_his4j"]
+bg_color = Color(0, 0, 0, 0.784314)
+
+[node name="Maemi" type="CharacterBody2D" node_paths=PackedStringArray("movement", "jump", "interactor", "input_buffer", "animator")]
 script = ExtResource("1_tus7m")
 movement = NodePath("Movement2D")
 jump = NodePath("Jump2D")
 interactor = NodePath("Flip2D/Interactor")
+input_buffer = NodePath("InputBuffer")
+animator = NodePath("AnimationTree")
 
 [node name="FeetCollision" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -54,3 +114,29 @@ texture = ExtResource("2_tb0nr")
 movement = NodePath("../Movement2D")
 
 [node name="InputBuffer" parent="." instance=ExtResource("5_kfuxd")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jsy5x")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_ypp6s")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+process_callback = 0
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_kjjio")
+
+[node name="DebugUI" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="DebugUI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -0.5
+offset_right = 0.5
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_his4j")
+text = "Current Animation"
