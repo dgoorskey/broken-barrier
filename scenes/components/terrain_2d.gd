@@ -3,8 +3,8 @@
 # - Edit the vertices of the CollisionPolygon2D.
 # - Change update_shape in the editor to sync the vertices with the Polygon2D.
 #-------------------------------------------------------------------------------
-extends CollisionPolygon2D
 @tool
+extends CollisionPolygon2D
 
 # Instead of setting shape/color every frame, use setters and getters.
 @export var update_shape := false:
