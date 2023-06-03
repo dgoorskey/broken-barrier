@@ -68,14 +68,14 @@ states/kick/position = Vector2(321, 125)
 states/punch/node = SubResource("AnimationNodeAnimation_3jfqn")
 states/punch/position = Vector2(223, 125)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_w4lx2"), "idle", "punch", SubResource("AnimationNodeStateMachineTransition_4imla"), "punch", "idle", SubResource("AnimationNodeStateMachineTransition_ieg74"), "idle", "kick", SubResource("AnimationNodeStateMachineTransition_r1ql0"), "kick", "idle", SubResource("AnimationNodeStateMachineTransition_8pec1")]
-graph_offset = Vector2(-80, -99)
+graph_offset = Vector2(-73, -74)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_kjjio"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_his4j"]
 bg_color = Color(0, 0, 0, 0.784314)
 
-[node name="Maemi" type="CharacterBody2D" node_paths=PackedStringArray("movement", "jump", "interactor", "input_buffer", "animator")]
+[node name="Maemi" type="CharacterBody2D" node_paths=PackedStringArray("movement", "jump", "interactor", "input_buffer", "animator") groups=["player"]]
 script = ExtResource("1_u51bu")
 movement = NodePath("Movement2D")
 jump = NodePath("Jump2D")

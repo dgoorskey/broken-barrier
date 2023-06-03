@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dd30sveoeh0x"]
+
+[ext_resource type="PackedScene" uid="uid://dri2im26ehue2" path="res://scenes/components/level.tscn" id="1_p1mgp"]
+[ext_resource type="PackedScene" uid="uid://b8ju7nfksh2mo" path="res://scenes/components/terrain_2d.tscn" id="2_ue0v7"]
+[ext_resource type="PackedScene" uid="uid://be8vlxsen77hj" path="res://scenes/components/level_changer.tscn" id="3_u7353"]
+[ext_resource type="PackedScene" uid="uid://bvr2oi6y8bcxk" path="res://scenes/characters/maemi/maemi.tscn" id="4_vcpyu"]
+[ext_resource type="PackedScene" uid="uid://bchqjc5wev8q0" path="res://scenes/enemies/nightstick_cop.tscn" id="5_dye7q"]
+
+[node name="Street1Screen1" instance=ExtResource("1_p1mgp")]
+
+[node name="Terrain" type="StaticBody2D" parent="." index="0"]
+
+[node name="BackWall" parent="Terrain" index="0" instance=ExtResource("2_ue0v7")]
+polygon = PackedVector2Array(0, -128, 1152, -128, 1152, -192, 0, -192)
+
+[node name="LeftWall" parent="Terrain" index="1" instance=ExtResource("2_ue0v7")]
+polygon = PackedVector2Array(-64, 128, 0, 128, 0, -128, -64, -128)
+
+[node name="FrontWall" parent="Terrain" index="2" instance=ExtResource("2_ue0v7")]
+position = Vector2(0, 320)
+polygon = PackedVector2Array(0, -128, 1152, -128, 1152, -192, 0, -192)
+
+[node name="RightWall" parent="Terrain" index="3" instance=ExtResource("2_ue0v7")]
+position = Vector2(1216, 0)
+polygon = PackedVector2Array(-64, 128, 0, 128, 0, -128, -64, -128)
+
+[node name="NextLevel" parent="." index="1" node_paths=PackedStringArray("current_level") instance=ExtResource("3_u7353")]
+current_level = NodePath("..")
+level_scene_path = "res://scenes/levels/street_1_screen_1.tscn"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NextLevel" index="0"]
+polygon = PackedVector2Array(1152, -128, 1152, 128, 1120, 128, 1120, -128)
+
+[node name="Label" type="Label" parent="." index="2"]
+offset_left = 16.0
+offset_top = -112.0
+offset_right = 85.0
+offset_bottom = -86.0
+text = "STREET 1 SCREEN 1"
+
+[node name="Maemi" parent="." index="3" instance=ExtResource("4_vcpyu")]
+position = Vector2(128, 0)
+
+[node name="NightstickCop" parent="." index="4" instance=ExtResource("5_dye7q")]
+position = Vector2(1024, 0)

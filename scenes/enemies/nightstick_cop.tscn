@@ -1,0 +1,93 @@
+[gd_scene load_steps=12 format=3 uid="uid://bchqjc5wev8q0"]
+
+[ext_resource type="PackedScene" uid="uid://2faqg6de4wtl" path="res://scenes/components/movement_2d.tscn" id="1_p6mme"]
+[ext_resource type="PackedScene" uid="uid://b5q57w75hcnaa" path="res://scenes/components/flip_2d.tscn" id="2_0p27s"]
+[ext_resource type="Texture2D" uid="uid://bbuhtmw4f2nsa" path="res://icon.svg" id="3_7qitc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u60ox"]
+radius = 32.0
+height = 128.0
+
+[sub_resource type="Animation" id="Animation_cwjec"]
+resource_name = "IDLE"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Movement2D/Flip2D/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -64), Vector2(0, -72), Vector2(0, -64)]
+}
+
+[sub_resource type="Animation" id="Animation_q6atr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Movement2D/Flip2D/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -64)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jxryo"]
+_data = {
+"IDLE": SubResource("Animation_cwjec"),
+"RESET": SubResource("Animation_q6atr")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ts7ta"]
+animation = &"IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cpjdt"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j0hsj"]
+states/IDLE/node = SubResource("AnimationNodeAnimation_ts7ta")
+states/IDLE/position = Vector2(525, 100)
+transitions = ["Start", "IDLE", SubResource("AnimationNodeStateMachineTransition_cpjdt")]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_dpje1"]
+
+[node name="NightstickCop" type="CharacterBody2D"]
+
+[node name="FeetCollision" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_u60ox")
+
+[node name="Movement2D" parent="." instance=ExtResource("1_p6mme")]
+
+[node name="Flip2D" parent="Movement2D" instance=ExtResource("2_0p27s")]
+
+[node name="Sprite2D" type="Sprite2D" parent="Movement2D/Flip2D"]
+position = Vector2(0, -64)
+texture = ExtResource("3_7qitc")
+
+[node name="Label" type="Label" parent="Movement2D/Flip2D"]
+offset_left = -32.0
+offset_top = -120.0
+offset_right = 71.0
+offset_bottom = -68.0
+text = "COP SPRITE
+FACING ==>"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jxryo")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_j0hsj")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_dpje1")

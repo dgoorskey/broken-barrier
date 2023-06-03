@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1irvg6x0sih6"]
+[gd_scene load_steps=15 format=3 uid="uid://c1irvg6x0sih6"]
 
 [ext_resource type="Script" path="res://scenes/components/level.gd" id="1_a055f"]
 [ext_resource type="Texture2D" uid="uid://bbuhtmw4f2nsa" path="res://icon.svg" id="2_4g1ya"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dv81w2w8c4ys3" path="res://scenes/components/interaction_hover_visibility.tscn" id="6_86x54"]
 [ext_resource type="PackedScene" uid="uid://cd2riq6hiri11" path="res://scenes/screens/dialogue_screen.tscn" id="9_1hstj"]
 [ext_resource type="PackedScene" uid="uid://bvr2oi6y8bcxk" path="res://scenes/characters/maemi/maemi.tscn" id="9_wqvtu"]
+[ext_resource type="PackedScene" uid="uid://be8vlxsen77hj" path="res://scenes/components/level_changer.tscn" id="10_o7vr7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y8x6a"]
 radius = 32.0
@@ -52,7 +53,7 @@ polygon = PackedVector2Array(0, 0, 0, 448, -256, 448, -256, 0)
 
 [node name="RightWall" parent="Terrain" instance=ExtResource("4_cy5cc")]
 position = Vector2(449, -64)
-polygon = PackedVector2Array(0, 0, 449, 448, 833, 448, 833, 0)
+polygon = PackedVector2Array(0, 0, 191.943, 191.516, 575, 192, 575, 448, 833, 448, 833, 0)
 
 [node name="Box1" type="StaticBody2D" parent="."]
 position = Vector2(128, -64)
@@ -184,3 +185,10 @@ grow_vertical = 0
 
 [node name="Maemi" parent="." instance=ExtResource("9_wqvtu")]
 position = Vector2(-827, 177)
+
+[node name="NextLevel" parent="." node_paths=PackedStringArray("current_level") instance=ExtResource("10_o7vr7")]
+current_level = NodePath("..")
+level_scene_path = "res://scenes/levels/street_1_screen_1.tscn"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NextLevel"]
+polygon = PackedVector2Array(960, 128, 960, 384, 1024, 384, 1024, 128)
