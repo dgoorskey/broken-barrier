@@ -134,7 +134,7 @@ func load_json(path: String) -> void:
 	current_dialogue_line_idx = 0
 	
 	var file := FileAccess.open(path, FileAccess.READ)
-	var data: Array[Dictionary] = JSON.parse_string(file.get_as_text(true))
+	var data: Array = JSON.parse_string(file.get_as_text(true))
 	
 	for line_data in data:
 		var dialogue_line := DialogueLine.new()
