@@ -10,28 +10,28 @@
 
 [node name="TitleScreen" parent="." instance=ExtResource("1_svp5s")]
 
-[node name="Music Handler" type="Node" parent="."]
+[node name="Music" type="Node" parent="."]
 
-[node name="Menu" type="AudioStreamPlayer" parent="Music Handler"]
+[node name="Menu" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("2_ln7vs")
 
-[node name="Background" type="AudioStreamPlayer" parent="Music Handler"]
+[node name="Background" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("2_wuhgi")
 
-[node name="NormalDialogue" type="AudioStreamPlayer" parent="Music Handler"]
+[node name="NormalDialogue" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("3_kt6lr")
 
-[node name="SpecificDialogue" type="AudioStreamPlayer" parent="Music Handler"]
+[node name="SpecificDialogue" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("4_ug8dr")
 
-[node name="Fight1" type="AudioStreamPlayer2D" parent="Music Handler"]
+[node name="Fight1" type="AudioStreamPlayer2D" parent="Music"]
 
-[node name="Fight2" type="AudioStreamPlayer2D" parent="Music Handler"]
+[node name="Fight2" type="AudioStreamPlayer2D" parent="Music"]
 
-[node name="Fight3" type="AudioStreamPlayer2D" parent="Music Handler"]
+[node name="Fight3" type="AudioStreamPlayer2D" parent="Music"]
 
-[node name="Fight4" type="AudioStreamPlayer2D" parent="Music Handler"]
+[node name="Fight4" type="AudioStreamPlayer2D" parent="Music"]
 
-[node name="SFX1" type="AudioStreamPlayer2D" parent="Music Handler"]
+[node name="SFX1" type="AudioStreamPlayer2D" parent="Music"]
 
-[node name="SFX2" type="AudioStreamPlayer2D" parent="Music Handler"]
+[node name="SFX2" type="AudioStreamPlayer2D" parent="Music"]

@@ -1,4 +1,4 @@
 extends Screen
 
 func _process(delta):
-	SoundScript.SetGameState("NormalFight")
+	Sound.set_game_state("NormalFight")

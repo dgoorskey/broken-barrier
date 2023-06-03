@@ -97,7 +97,7 @@ func _process(delta: float) -> void:
 			input_cooldown.start()
 			next_line()
 	
-	SoundScript.SetGameState("TalkingNormal")
+	Sound.set_game_state("TalkingNormal")
 	
 
 var can_accept_input := false
@@ -163,7 +163,7 @@ func load_json(path: String) -> void:
 func _on_option_1_pressed() -> void:
 	var dialogue_line := dialogue_lines[current_dialogue_line_idx]
 	var target := dialogue_line.option_1_target
-	SoundScript.SetGameState("BossFight")
+	Sound.set_game_state("BossFight")
 	if target == "":
 		next_line()
 	else:

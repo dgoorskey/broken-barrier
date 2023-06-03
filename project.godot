@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 Game="*res://autoloads/game.gd"
 Story="*res://autoloads/story.gd"
-SoundScript="*res://scenes/SoundScript.gd"
+Sound="*res://autoloads/sound.gd"
 
 [input]
 

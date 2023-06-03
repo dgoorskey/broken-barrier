@@ -11,4 +11,4 @@ func _on_settings_pressed() -> void:
 	change_screen(screen)
 
 func _process(delta):
-	SoundScript.SetGameState("Menu")
+	Sound.set_game_state("Menu")

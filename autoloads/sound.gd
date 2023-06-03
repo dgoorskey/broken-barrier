@@ -1,26 +1,26 @@
 extends Node
 #AudioStreamPlayer for menu music
-@onready var menu = get_parent().get_node("Main/Music Handler/Menu")
+@onready var menu = get_parent().get_node("Main/Music/Menu")
 #AudioStreamPlayer for general background music
-@onready var background = get_parent().get_node("Main/Music Handler/Background")
+@onready var background = get_parent().get_node("Main/Music/Background")
 #AudioStreamPlayer for normal dialogue
-@onready var normalDialogue = get_parent().get_node("Main/Music Handler/NormalDialogue")
+@onready var normalDialogue = get_parent().get_node("Main/Music/NormalDialogue")
 #AudioStreamPlayer for specific dialogue (Love, Call Out) 
-@onready var specificDialogue = get_parent().get_node("Main/Music Handler/SpecificDialogue")
+@onready var specificDialogue = get_parent().get_node("Main/Music/SpecificDialogue")
 
 #Sets game state so that correct music file is played
-var game_state = null : set = SetGameState
+var game_state = null : set = set_game_state
 
-func SetGameState(new_value):
+func set_game_state(new_value):
 	if not game_state == new_value:
 		game_state = new_value
 		print("game state = " + game_state)
-		ChangeMusic()
+		change_music()
 	else:
 		pass
 
 #Changes music file based on game state
-func ChangeMusic(): 
+func change_music(): 
 	match game_state:
 		"Menu":
 			menu._set_playing(true)
