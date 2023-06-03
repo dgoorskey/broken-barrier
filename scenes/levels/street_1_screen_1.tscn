@@ -7,11 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://bchqjc5wev8q0" path="res://scenes/enemies/nightstick_cop.tscn" id="5_dye7q"]
 
 [node name="Street1Screen1" instance=ExtResource("1_p1mgp")]
+y_sort_enabled = true
 
 [node name="Terrain" type="StaticBody2D" parent="." index="0"]
+y_sort_enabled = true
 
 [node name="BackWall" parent="Terrain" index="0" instance=ExtResource("2_ue0v7")]
-polygon = PackedVector2Array(0, -128, 1152, -128, 1152, -192, 0, -192)
+position = Vector2(0, -128)
+polygon = PackedVector2Array(0, 0, 1152, 0, 1152, -192, 0, -192)
 
 [node name="LeftWall" parent="Terrain" index="1" instance=ExtResource("2_ue0v7")]
 polygon = PackedVector2Array(-64, 128, 0, 128, 0, -128, -64, -128)
