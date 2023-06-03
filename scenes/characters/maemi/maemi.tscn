@@ -1,10 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://bvr2oi6y8bcxk"]
+[gd_scene load_steps=27 format=3 uid="uid://bvr2oi6y8bcxk"]
 
 [ext_resource type="Script" path="res://scenes/characters/maemi/maemi.gd" id="1_u51bu"]
 [ext_resource type="PackedScene" uid="uid://b5q57w75hcnaa" path="res://scenes/components/flip_2d.tscn" id="2_t5abb"]
 [ext_resource type="PackedScene" uid="uid://ioa00g5nnrn2" path="res://scenes/components/interactor.tscn" id="3_8x6wy"]
 [ext_resource type="PackedScene" uid="uid://2faqg6de4wtl" path="res://scenes/components/movement_2d.tscn" id="4_t2iv1"]
 [ext_resource type="Texture2D" uid="uid://bbuhtmw4f2nsa" path="res://icon.svg" id="5_5sxi3"]
+[ext_resource type="PackedScene" uid="uid://dqupomonxf4ug" path="res://scenes/components/flip_sort_2d.tscn" id="5_lb7kc"]
+[ext_resource type="Texture2D" uid="uid://4a6ne7ic4lh3" path="res://body_example.png" id="6_84sm4"]
 [ext_resource type="PackedScene" uid="uid://b03emya1b4af6" path="res://scenes/components/jump_2d.tscn" id="6_vwq21"]
 [ext_resource type="PackedScene" uid="uid://cwr3j85yhnxdm" path="res://scenes/components/input_buffer.tscn" id="7_w4ta8"]
 
@@ -105,9 +107,115 @@ drag_vertical_enabled = true
 
 [node name="Flip2D" parent="Movement2D" instance=ExtResource("2_t5abb")]
 
-[node name="Icon" type="Sprite2D" parent="Movement2D/Flip2D"]
+[node name="FlipSort2D" parent="Movement2D/Flip2D" node_paths=PackedStringArray("flip_2d") instance=ExtResource("5_lb7kc")]
+flip_2d = NodePath("..")
+
+[node name="Left" type="Sprite2D" parent="Movement2D/Flip2D/FlipSort2D"]
+modulate = Color(0.14902, 0, 1, 1)
+position = Vector2(16, -64)
+texture = ExtResource("5_5sxi3")
+
+[node name="Icon" type="Sprite2D" parent="Movement2D/Flip2D/FlipSort2D"]
 position = Vector2(0, -64)
 texture = ExtResource("5_5sxi3")
+
+[node name="Right" type="Sprite2D" parent="Movement2D/Flip2D/FlipSort2D"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-16, -64)
+texture = ExtResource("5_5sxi3")
+
+[node name="Example" type="Sprite2D" parent="Movement2D/Flip2D"]
+visible = false
+modulate = Color(1, 1, 1, 0.141176)
+texture_filter = 1
+position = Vector2(0, -112)
+texture = ExtResource("6_84sm4")
+
+[node name="Hip" type="Polygon2D" parent="Movement2D/Flip2D"]
+visible = false
+position = Vector2(-16, -72)
+rotation = -0.159498
+offset = Vector2(16, 72)
+polygon = PackedVector2Array(-40, -80, 8, -80, -16, -56)
+
+[node name="Chest" type="Polygon2D" parent="Movement2D/Flip2D/Hip"]
+z_index = 1
+position = Vector2(0, -8)
+rotation = 0.198074
+color = Color(1, 0.85098, 0, 1)
+offset = Vector2(16, 88)
+polygon = PackedVector2Array(-40, -88, 8, -88, 16, -136, -48, -136)
+
+[node name="LeftArm" type="Polygon2D" parent="Movement2D/Flip2D/Hip/Chest"]
+z_index = -2
+position = Vector2(32, -40)
+rotation = -1.07202
+color = Color(0, 0.466667, 1, 1)
+offset = Vector2(32, 24)
+polygon = PackedVector2Array(-32, -40, -48, -24, -32, 16, -16, -24)
+
+[node name="LeftForearm" type="Polygon2D" parent="Movement2D/Flip2D/Hip/Chest/LeftArm"]
+z_index = -3
+position = Vector2(0, 40)
+rotation = -1.96526
+color = Color(0.235294, 1, 0, 1)
+offset = Vector2(0, -40)
+polygon = PackedVector2Array(0, 32, 8, 40, 0, 72, -8, 40)
+
+[node name="RightArm" type="Polygon2D" parent="Movement2D/Flip2D/Hip/Chest"]
+z_index = 2
+position = Vector2(-32, -40)
+rotation = -1.24997
+color = Color(1, 0, 0.0509804, 1)
+offset = Vector2(32, 24)
+polygon = PackedVector2Array(-32, -40, -48, -24, -32, 16, -16, -24)
+
+[node name="RightForearm" type="Polygon2D" parent="Movement2D/Flip2D/Hip/Chest/RightArm"]
+z_index = 1
+position = Vector2(0, 40)
+rotation = -1.64236
+color = Color(1, 0.482353, 0, 1)
+offset = Vector2(0, -40)
+polygon = PackedVector2Array(0, 32, 8, 40, 0, 72, -8, 40)
+
+[node name="Head" type="Polygon2D" parent="Movement2D/Flip2D/Hip/Chest"]
+position = Vector2(0, -48)
+rotation = 0.328305
+color = Color(0.729412, 0.670588, 0, 1)
+offset = Vector2(0, 48)
+polygon = PackedVector2Array(0, -80, -16, -64, 0, -48, 16, -64)
+
+[node name="RightThigh" type="Polygon2D" parent="Movement2D/Flip2D/Hip"]
+z_index = 1
+position = Vector2(-8, 8)
+rotation = -0.13179
+color = Color(1, 0, 0.54902, 1)
+offset = Vector2(8, -8)
+polygon = PackedVector2Array(-24, 8, -8, -8, 8, 8, -8, 56)
+
+[node name="RightLeg" type="Polygon2D" parent="Movement2D/Flip2D/Hip/RightThigh"]
+z_index = 3
+position = Vector2(0, 40)
+rotation = 1.31456
+color = Color(1, 0, 0.301961, 1)
+offset = Vector2(0, -40)
+polygon = PackedVector2Array(0, 32, -8, 40, 0, 88, 8, 40)
+
+[node name="LeftThigh" type="Polygon2D" parent="Movement2D/Flip2D/Hip"]
+z_index = -1
+position = Vector2(8, 8)
+rotation = -0.941195
+color = Color(0.6, 0, 1, 1)
+offset = Vector2(8, -8)
+polygon = PackedVector2Array(-24, 8, -8, -8, 8, 8, -8, 56)
+
+[node name="RightLeg2" type="Polygon2D" parent="Movement2D/Flip2D/Hip/LeftThigh"]
+z_index = -2
+position = Vector2(0, 40)
+rotation = 0.960341
+color = Color(0, 0.635294, 1, 1)
+offset = Vector2(0, -40)
+polygon = PackedVector2Array(0, 32, -8, 40, 0, 88, 8, 40)
 
 [node name="Jump2D" parent="." node_paths=PackedStringArray("movement") instance=ExtResource("6_vwq21")]
 movement = NodePath("../Movement2D")
