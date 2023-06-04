@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://co3gt75q0mvrx"]
+
+[ext_resource type="Script" path="res://scenes/components/hurtbox.gd" id="1_3f8k0"]
+
+[node name="Hurtbox" type="Area2D"]
+modulate = Color(0, 1, 0, 1)
+monitoring = false
+script = ExtResource("1_3f8k0")

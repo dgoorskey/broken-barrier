@@ -1,12 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://bchqjc5wev8q0"]
+[gd_scene load_steps=14 format=3 uid="uid://bchqjc5wev8q0"]
 
 [ext_resource type="PackedScene" uid="uid://2faqg6de4wtl" path="res://scenes/components/movement_2d.tscn" id="1_p6mme"]
 [ext_resource type="PackedScene" uid="uid://b5q57w75hcnaa" path="res://scenes/components/flip_2d.tscn" id="2_0p27s"]
 [ext_resource type="Texture2D" uid="uid://bbuhtmw4f2nsa" path="res://icon.svg" id="3_7qitc"]
+[ext_resource type="PackedScene" uid="uid://co3gt75q0mvrx" path="res://scenes/components/hurtbox.tscn" id="4_yhxmx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u60ox"]
 radius = 32.0
 height = 128.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_whhlu"]
+size = Vector2(128, 120)
 
 [sub_resource type="Animation" id="Animation_cwjec"]
 resource_name = "IDLE"
@@ -66,6 +70,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_u60ox")
 
 [node name="Movement2D" parent="." instance=ExtResource("1_p6mme")]
+position = Vector2(0, -128)
 
 [node name="Flip2D" parent="Movement2D" instance=ExtResource("2_0p27s")]
 
@@ -80,6 +85,13 @@ offset_right = 71.0
 offset_bottom = -68.0
 text = "COP SPRITE
 FACING ==>"
+
+[node name="Hurtbox" parent="Movement2D" node_paths=PackedStringArray("root_position") instance=ExtResource("4_yhxmx")]
+root_position = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Movement2D/Hurtbox"]
+position = Vector2(0, -60)
+shape = SubResource("RectangleShape2D_whhlu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

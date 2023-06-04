@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bvr2oi6y8bcxk"]
+[gd_scene load_steps=31 format=3 uid="uid://bvr2oi6y8bcxk"]
 
 [ext_resource type="Script" path="res://scenes/characters/maemi/maemi.gd" id="1_u51bu"]
 [ext_resource type="PackedScene" uid="uid://b5q57w75hcnaa" path="res://scenes/components/flip_2d.tscn" id="2_t5abb"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://4a6ne7ic4lh3" path="res://body_example.png" id="6_84sm4"]
 [ext_resource type="PackedScene" uid="uid://b03emya1b4af6" path="res://scenes/components/jump_2d.tscn" id="6_vwq21"]
 [ext_resource type="PackedScene" uid="uid://cwr3j85yhnxdm" path="res://scenes/components/input_buffer.tscn" id="7_w4ta8"]
+[ext_resource type="PackedScene" uid="uid://cbepu7ch23gwi" path="res://scenes/components/hitbox.tscn" id="8_1xslf"]
+[ext_resource type="PackedScene" uid="uid://cqlco8f6viweo" path="res://scenes/components/simple_attack.tscn" id="9_uqt43"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ldgvj"]
 radius = 32.0
@@ -16,6 +18,12 @@ height = 128.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n2nod"]
 size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phupk"]
+size = Vector2(128, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y63lw"]
+size = Vector2(128, 56)
 
 [sub_resource type="Animation" id="Animation_utg8m"]
 resource_name = "idle"
@@ -91,11 +99,12 @@ debug_color = Color(0, 0, 0, 0.419608)
 [node name="Flip2D" parent="." instance=ExtResource("2_t5abb")]
 
 [node name="Interactor" parent="Flip2D" instance=ExtResource("3_8x6wy")]
+modulate = Color(0, 0, 1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip2D/Interactor"]
 position = Vector2(32, 0)
 shape = SubResource("RectangleShape2D_n2nod")
-debug_color = Color(0, 1, 0, 0.419608)
+debug_color = Color(1, 1, 1, 0.419608)
 
 [node name="Movement2D" parent="." instance=ExtResource("4_t2iv1")]
 
@@ -216,6 +225,34 @@ rotation = 0.960341
 color = Color(0, 0.635294, 1, 1)
 offset = Vector2(0, -40)
 polygon = PackedVector2Array(0, 32, -8, 40, 0, 88, 8, 40)
+
+[node name="Moves" type="Node2D" parent="Movement2D/Flip2D"]
+
+[node name="Punch" parent="Movement2D/Flip2D/Moves" node_paths=PackedStringArray("hitbox", "animator") instance=ExtResource("9_uqt43")]
+trigger_animation = &"punch"
+hitbox = NodePath("PunchHitbox")
+animator = NodePath("../../../../AnimationTree")
+
+[node name="PunchHitbox" parent="Movement2D/Flip2D/Moves/Punch" node_paths=PackedStringArray("root_position") instance=ExtResource("8_1xslf")]
+root_position = NodePath("../../../../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Movement2D/Flip2D/Moves/Punch/PunchHitbox"]
+position = Vector2(128, -96)
+shape = SubResource("RectangleShape2D_phupk")
+debug_color = Color(1, 1, 1, 0.419608)
+
+[node name="Kick" parent="Movement2D/Flip2D/Moves" node_paths=PackedStringArray("hitbox", "animator") instance=ExtResource("9_uqt43")]
+trigger_animation = &"kick"
+hitbox = NodePath("KickHitbox")
+animator = NodePath("../../../../AnimationTree")
+
+[node name="KickHitbox" parent="Movement2D/Flip2D/Moves/Kick" node_paths=PackedStringArray("root_position") instance=ExtResource("8_1xslf")]
+root_position = NodePath("../../../../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Movement2D/Flip2D/Moves/Kick/KickHitbox"]
+position = Vector2(128, -28)
+shape = SubResource("RectangleShape2D_y63lw")
+debug_color = Color(1, 1, 1, 0.419608)
 
 [node name="Jump2D" parent="." node_paths=PackedStringArray("movement") instance=ExtResource("6_vwq21")]
 movement = NodePath("../Movement2D")

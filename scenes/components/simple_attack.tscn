@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqlco8f6viweo"]
+
+[ext_resource type="PackedScene" uid="uid://m2ngfxnb6l27" path="res://scenes/components/move.tscn" id="1_v63j5"]
+[ext_resource type="Script" path="res://scenes/components/simple_attack.gd" id="2_ympva"]
+
+[node name="SimpleAttack" instance=ExtResource("1_v63j5")]
+script = ExtResource("2_ympva")
+trigger_animation = &""
+damage = 0.0
+knockback = 0.0
