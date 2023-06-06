@@ -8,6 +8,12 @@ class_name Hitbox
 
 @export var root_position: Node2D = null # optional
 
+@onready var is_debug := get_tree().debug_collisions_hint
+const INACTIVE_COLOR := Color8(255, 0, 0, 20)
+const ACTIVE_COLOR := Color8(255, 0, 0, 255)
+const VISIBLE_TIME := 10
+var visible_time := 0
+
 # returns a list of any overlapping Hurtboxes
 func get_hurtboxes() -> Array[Hurtbox]:
 	var results: Array[Hurtbox] = []
@@ -49,3 +55,15 @@ func hit(damage=0, hitstun=0, knockback=Vector2.ZERO) -> void:
 		
 		print('hit something!')
 		hurtbox.hurt(damage, hitstun, knockback)
+		
+	visible_time = VISIBLE_TIME
+
+func _process(delta: float) -> void:
+	if not is_debug:
+		return
+	
+	if visible_time > 0:
+		modulate = ACTIVE_COLOR
+		visible_time -= 1
+	else:
+		modulate = INACTIVE_COLOR
