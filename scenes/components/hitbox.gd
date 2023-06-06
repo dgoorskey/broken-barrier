@@ -23,6 +23,8 @@ func get_hurtboxes() -> Array[Hurtbox]:
 
 # attempts to hit all overlapping Hurtboxes
 func hit(damage=0, hitstun=0, knockback=Vector2.ZERO) -> void:
+	visible_time = VISIBLE_TIME
+	
 	for hurtbox in get_overlapping_areas():
 		if not hurtbox is Hurtbox:
 			continue
@@ -54,8 +56,6 @@ func hit(damage=0, hitstun=0, knockback=Vector2.ZERO) -> void:
 		
 		print('hit something!')
 		hurtbox.hurt(damage, hitstun, knockback)
-		
-	visible_time = VISIBLE_TIME
 
 func _process(delta: float) -> void:
 	if visible_time > 0:
