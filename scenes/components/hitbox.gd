@@ -17,7 +17,7 @@ func get_hurtboxes() -> Array[Hurtbox]:
 	return results
 
 # attempts to hit all overlapping Hurtboxes
-func hit() -> void:
+func hit(damage=0, hitstun=0, knockback=Vector2.ZERO) -> void:
 	for hurtbox in get_overlapping_areas():
 		if not hurtbox is Hurtbox:
 			continue
@@ -48,4 +48,4 @@ func hit() -> void:
 			return
 		
 		print('hit something!')
-		hurtbox.hurt()
+		hurtbox.hurt(damage, hitstun, knockback)

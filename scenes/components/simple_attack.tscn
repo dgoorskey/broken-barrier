@@ -7,4 +7,3 @@
 script = ExtResource("2_ympva")
 trigger_animation = &""
 damage = 0.0
-knockback = 0.0

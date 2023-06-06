@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://brc2eetwp0wgx"]
+
+[ext_resource type="PackedScene" uid="uid://m2ngfxnb6l27" path="res://scenes/components/move.tscn" id="1_lba2v"]
+[ext_resource type="Script" path="res://scenes/components/standard_attack.gd" id="2_wvpjx"]
+
+[node name="StandardAttack" instance=ExtResource("1_lba2v")]
+script = ExtResource("2_wvpjx")
+damage = 0
+hitstun = 0
+knockback = Vector2(0, 0)

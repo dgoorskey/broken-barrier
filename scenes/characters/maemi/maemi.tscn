@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b03emya1b4af6" path="res://scenes/components/jump_2d.tscn" id="6_vwq21"]
 [ext_resource type="PackedScene" uid="uid://cwr3j85yhnxdm" path="res://scenes/components/input_buffer.tscn" id="7_w4ta8"]
 [ext_resource type="PackedScene" uid="uid://cbepu7ch23gwi" path="res://scenes/components/hitbox.tscn" id="8_1xslf"]
-[ext_resource type="PackedScene" uid="uid://cqlco8f6viweo" path="res://scenes/components/simple_attack.tscn" id="9_uqt43"]
+[ext_resource type="PackedScene" uid="uid://brc2eetwp0wgx" path="res://scenes/components/standard_attack.tscn" id="8_joc0m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ldgvj"]
 radius = 32.0
@@ -31,9 +31,71 @@ loop_mode = 1
 
 [sub_resource type="Animation" id="Animation_7j12l"]
 resource_name = "kick"
+length = 0.816668
+step = 0.0166667
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Movement2D/Flip2D/Moves/Kick")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.216667, 0.233333, 0.25, 0.266667, 0.283333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"hit"
+}, {
+"args": [],
+"method": &"hit"
+}, {
+"args": [],
+"method": &"hit"
+}, {
+"args": [],
+"method": &"hit"
+}, {
+"args": [],
+"method": &"hit"
+}, {
+"args": [],
+"method": &"hit"
+}, {
+"args": [],
+"method": &"hit"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_erang"]
 resource_name = "punch"
+length = 0.400002
+step = 0.0166667
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Movement2D/Flip2D/Moves/Punch")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.116667, 0.133333, 0.15, 0.166667, 0.183333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"hit"
+}, {
+"args": [],
+"method": &"hit"
+}, {
+"args": [],
+"method": &"hit"
+}, {
+"args": [],
+"method": &"hit"
+}, {
+"args": [],
+"method": &"hit"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jsy5x"]
 _data = {
@@ -228,10 +290,8 @@ polygon = PackedVector2Array(0, 32, -8, 40, 0, 88, 8, 40)
 
 [node name="Moves" type="Node2D" parent="Movement2D/Flip2D"]
 
-[node name="Punch" parent="Movement2D/Flip2D/Moves" node_paths=PackedStringArray("hitbox", "animator") instance=ExtResource("9_uqt43")]
-trigger_animation = &"punch"
-hitbox = NodePath("PunchHitbox")
-animator = NodePath("../../../../AnimationTree")
+[node name="Punch" parent="Movement2D/Flip2D/Moves" node_paths=PackedStringArray("hitbox") instance=ExtResource("8_joc0m")]
+hitbox = NodePath("")
 
 [node name="PunchHitbox" parent="Movement2D/Flip2D/Moves/Punch" node_paths=PackedStringArray("root_position") instance=ExtResource("8_1xslf")]
 root_position = NodePath("../../../../..")
@@ -241,10 +301,7 @@ position = Vector2(128, -96)
 shape = SubResource("RectangleShape2D_phupk")
 debug_color = Color(1, 1, 1, 0.419608)
 
-[node name="Kick" parent="Movement2D/Flip2D/Moves" node_paths=PackedStringArray("hitbox", "animator") instance=ExtResource("9_uqt43")]
-trigger_animation = &"kick"
-hitbox = NodePath("KickHitbox")
-animator = NodePath("../../../../AnimationTree")
+[node name="Kick" parent="Movement2D/Flip2D/Moves" instance=ExtResource("8_joc0m")]
 
 [node name="KickHitbox" parent="Movement2D/Flip2D/Moves/Kick" node_paths=PackedStringArray("root_position") instance=ExtResource("8_1xslf")]
 root_position = NodePath("../../../../..")

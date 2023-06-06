@@ -18,6 +18,6 @@ func disable() -> void:
 	monitorable = false
 
 # do whatever needs to be done when hit
-func hurt() -> void:
+func hurt(damage=0, hitstun=0, knockback=Vector2.ZERO) -> void:
 	hurt_signal.emit()
 	print("OUCH!")
