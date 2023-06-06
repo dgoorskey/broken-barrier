@@ -9,7 +9,6 @@ class_name Hurtbox
 
 signal hurt_signal
 
-@onready var is_debug := get_tree().debug_collisions_hint
 const INACTIVE_COLOR := Color8(0, 255, 0, 20)
 const ACTIVE_COLOR := Color8(0, 255, 0, 255)
 const VISIBLE_TIME := 10
@@ -31,9 +30,6 @@ func hurt(damage=0, hitstun=0, knockback=Vector2.ZERO) -> void:
 	visible_time = VISIBLE_TIME
 
 func _process(delta: float) -> void:
-	if not is_debug:
-		return
-	
 	if visible_time > 0:
 		modulate = ACTIVE_COLOR
 		visible_time -= 1

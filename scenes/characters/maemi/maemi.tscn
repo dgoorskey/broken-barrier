@@ -282,6 +282,8 @@ polygon = PackedVector2Array(0, 32, -8, 40, 0, 88, 8, 40)
 
 [node name="Punch" parent="Movement2D/Flip2D/Moves" node_paths=PackedStringArray("hitbox") instance=ExtResource("8_joc0m")]
 hitbox = NodePath("")
+damage = 15
+hitstun = 15
 
 [node name="PunchHitbox" parent="Movement2D/Flip2D/Moves/Punch" node_paths=PackedStringArray("root_position") instance=ExtResource("8_1xslf")]
 root_position = NodePath("../../../../..")
@@ -292,6 +294,8 @@ shape = SubResource("RectangleShape2D_phupk")
 debug_color = Color(1, 1, 1, 0.419608)
 
 [node name="Kick" parent="Movement2D/Flip2D/Moves" instance=ExtResource("8_joc0m")]
+damage = 25
+hitstun = 25
 
 [node name="KickHitbox" parent="Movement2D/Flip2D/Moves/Kick" node_paths=PackedStringArray("root_position") instance=ExtResource("8_1xslf")]
 root_position = NodePath("../../../../..")
