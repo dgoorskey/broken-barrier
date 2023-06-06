@@ -181,18 +181,8 @@ drag_vertical_enabled = true
 [node name="FlipSort2D" parent="Movement2D/Flip2D" node_paths=PackedStringArray("flip_2d") instance=ExtResource("5_lb7kc")]
 flip_2d = NodePath("..")
 
-[node name="Left" type="Sprite2D" parent="Movement2D/Flip2D/FlipSort2D"]
-modulate = Color(0.14902, 0, 1, 1)
-position = Vector2(16, -64)
-texture = ExtResource("5_5sxi3")
-
 [node name="Icon" type="Sprite2D" parent="Movement2D/Flip2D/FlipSort2D"]
 position = Vector2(0, -64)
-texture = ExtResource("5_5sxi3")
-
-[node name="Right" type="Sprite2D" parent="Movement2D/Flip2D/FlipSort2D"]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(-16, -64)
 texture = ExtResource("5_5sxi3")
 
 [node name="Example" type="Sprite2D" parent="Movement2D/Flip2D"]
