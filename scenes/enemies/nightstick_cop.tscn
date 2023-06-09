@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bchqjc5wev8q0"]
+[gd_scene load_steps=17 format=3 uid="uid://bchqjc5wev8q0"]
 
 [ext_resource type="PackedScene" uid="uid://2faqg6de4wtl" path="res://scenes/components/movement_2d.tscn" id="1_p6mme"]
+[ext_resource type="Script" path="res://scenes/enemies/nightstick_cop.gd" id="1_pyv31"]
 [ext_resource type="PackedScene" uid="uid://b5q57w75hcnaa" path="res://scenes/components/flip_2d.tscn" id="2_0p27s"]
 [ext_resource type="Texture2D" uid="uid://bbuhtmw4f2nsa" path="res://icon.svg" id="3_7qitc"]
 [ext_resource type="PackedScene" uid="uid://co3gt75q0mvrx" path="res://scenes/components/hurtbox.tscn" id="4_yhxmx"]
@@ -65,14 +66,15 @@ transitions = ["Start", "IDLE", SubResource("AnimationNodeStateMachineTransition
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_dpje1"]
 
-[node name="NightstickCop" type="CharacterBody2D"]
+[node name="NightstickCop" type="CharacterBody2D" node_paths=PackedStringArray("movement")]
+script = ExtResource("1_pyv31")
+movement = NodePath("Movement2D")
 
 [node name="FeetCollision" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_u60ox")
 
 [node name="Movement2D" parent="." instance=ExtResource("1_p6mme")]
-position = Vector2(0, -128)
 
 [node name="Flip2D" parent="Movement2D" instance=ExtResource("2_0p27s")]
 
@@ -88,8 +90,8 @@ offset_bottom = -68.0
 text = "COP SPRITE
 FACING ==>"
 
-[node name="Hurtbox" parent="Movement2D" node_paths=PackedStringArray("root_position") instance=ExtResource("4_yhxmx")]
-root_position = NodePath("../..")
+[node name="Hurtbox" parent="Movement2D" node_paths=PackedStringArray("movement") instance=ExtResource("4_yhxmx")]
+movement = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement2D/Hurtbox"]
 position = Vector2(0, -60)

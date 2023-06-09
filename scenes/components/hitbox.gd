@@ -6,7 +6,8 @@
 extends Area2D
 class_name Hitbox
 
-@export var root_position: Node2D = null # optional
+@export var movement: Movement2D = null # optional
+@export var flip2d: Flip2D = null # optional
 
 const INACTIVE_COLOR := Color8(255, 0, 0, 20)
 const ACTIVE_COLOR := Color8(255, 0, 0, 255)
@@ -42,17 +43,21 @@ func hit(damage=0, hitstun=0, knockback=Vector2.ZERO) -> void:
 		var hitbox_altitude := 0.0
 		var hurtbox_altitude := 0.0
 		
-		if root_position != null:
-			hitbox_altitude = root_position.global_position.y
+		if movement != null:
+			hitbox_altitude = movement.global_position.y
 		
-		if hurtbox.root_position != null:
-			hurtbox_altitude = hurtbox.root_position.global_position.y
+		if hurtbox.movement != null:
+			hurtbox_altitude = hurtbox.movement.global_position.y
 		
 		# check if altitudes are close enough
 		if hitbox_altitude < hurtbox_altitude - 30.0:
 			return
 		if hitbox_altitude > hurtbox_altitude + 30.0:
 			return
+		
+		# determine knockback direction
+		if flip2d != null:
+			knockback.x *= flip2d.scale.x
 		
 		print('hit something!')
 		hurtbox.hurt(damage, hitstun, knockback)

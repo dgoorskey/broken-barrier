@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dd30sveoeh0x"]
+[gd_scene load_steps=9 format=3 uid="uid://dd30sveoeh0x"]
 
 [ext_resource type="PackedScene" uid="uid://dri2im26ehue2" path="res://scenes/components/level.tscn" id="1_p1mgp"]
 [ext_resource type="PackedScene" uid="uid://b8ju7nfksh2mo" path="res://scenes/components/terrain_2d.tscn" id="2_ue0v7"]
 [ext_resource type="PackedScene" uid="uid://be8vlxsen77hj" path="res://scenes/components/level_changer.tscn" id="3_u7353"]
 [ext_resource type="PackedScene" uid="uid://bvr2oi6y8bcxk" path="res://scenes/characters/maemi/maemi.tscn" id="4_vcpyu"]
 [ext_resource type="PackedScene" uid="uid://bchqjc5wev8q0" path="res://scenes/enemies/nightstick_cop.tscn" id="5_dye7q"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_y4aan"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_xls8s"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_vsh76"]
 
 [node name="Street1Screen1" instance=ExtResource("1_p1mgp")]
 y_sort_enabled = true
@@ -45,4 +51,32 @@ text = "STREET 1 SCREEN 1"
 position = Vector2(128, 0)
 
 [node name="NightstickCop" parent="." index="4" instance=ExtResource("5_dye7q")]
-position = Vector2(576, 128)
+position = Vector2(576, 0)
+
+[node name="Movement2D" parent="NightstickCop" index="1"]
+position = Vector2(0, -200)
+
+[node name="AnimationTree" parent="NightstickCop" index="3"]
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_y4aan")
+
+[node name="NightstickCop2" parent="." index="5" instance=ExtResource("5_dye7q")]
+position = Vector2(768, 128)
+
+[node name="Movement2D" parent="NightstickCop2" index="1"]
+position = Vector2(0, -300)
+
+[node name="AnimationTree" parent="NightstickCop2" index="3"]
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_xls8s")
+
+[node name="NightstickCop3" parent="." index="6" instance=ExtResource("5_dye7q")]
+position = Vector2(896, -64)
+
+[node name="Movement2D" parent="NightstickCop3" index="1"]
+position = Vector2(0, -400)
+
+[node name="AnimationTree" parent="NightstickCop3" index="3"]
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_vsh76")
+
+[editable path="NightstickCop"]
+[editable path="NightstickCop2"]
+[editable path="NightstickCop3"]

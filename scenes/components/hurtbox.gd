@@ -5,7 +5,7 @@
 extends Area2D
 class_name Hurtbox
 
-@export var root_position: Node2D = null # optional
+@export var movement: Movement2D = null # optional
 
 signal hurt_signal
 
@@ -28,6 +28,10 @@ func hurt(damage=0, hitstun=0, knockback=Vector2.ZERO) -> void:
 	print("OUCH!")
 	
 	visible_time = VISIBLE_TIME
+	
+	# apply knockback
+	if knockback != Vector2.ZERO and movement != null:
+		movement.set_velocity(Vector3(knockback.x, knockback.y, 0.0))
 
 func _process(delta: float) -> void:
 	if visible_time > 0:

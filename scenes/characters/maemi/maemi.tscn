@@ -170,7 +170,6 @@ shape = SubResource("RectangleShape2D_n2nod")
 debug_color = Color(1, 1, 1, 0.419608)
 
 [node name="Movement2D" parent="." instance=ExtResource("4_t2iv1")]
-position = Vector2(0, -200)
 
 [node name="Camera2D" type="Camera2D" parent="Movement2D"]
 process_callback = 0
@@ -286,9 +285,11 @@ polygon = PackedVector2Array(0, 32, -8, 40, 0, 88, 8, 40)
 hitbox = NodePath("")
 damage = 15
 hitstun = 15
+knockback = Vector2(100, 700)
 
-[node name="PunchHitbox" parent="Movement2D/Flip2D/Moves/Punch" node_paths=PackedStringArray("root_position") instance=ExtResource("8_1xslf")]
-root_position = NodePath("../../../../..")
+[node name="PunchHitbox" parent="Movement2D/Flip2D/Moves/Punch" node_paths=PackedStringArray("movement", "flip2d") instance=ExtResource("8_1xslf")]
+movement = NodePath("../../../..")
+flip2d = NodePath("../../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement2D/Flip2D/Moves/Punch/PunchHitbox"]
 position = Vector2(128, -96)
@@ -298,9 +299,11 @@ debug_color = Color(1, 1, 1, 0.419608)
 [node name="Kick" parent="Movement2D/Flip2D/Moves" instance=ExtResource("8_joc0m")]
 damage = 25
 hitstun = 25
+knockback = Vector2(500, 1000)
 
-[node name="KickHitbox" parent="Movement2D/Flip2D/Moves/Kick" node_paths=PackedStringArray("root_position") instance=ExtResource("8_1xslf")]
-root_position = NodePath("../../../../..")
+[node name="KickHitbox" parent="Movement2D/Flip2D/Moves/Kick" node_paths=PackedStringArray("movement", "flip2d") instance=ExtResource("8_1xslf")]
+movement = NodePath("../../../..")
+flip2d = NodePath("../../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement2D/Flip2D/Moves/Kick/KickHitbox"]
 position = Vector2(128, -28)
