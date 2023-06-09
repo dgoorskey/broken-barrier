@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bvr2oi6y8bcxk"]
+[gd_scene load_steps=32 format=3 uid="uid://bvr2oi6y8bcxk"]
 
 [ext_resource type="Script" path="res://scenes/characters/maemi/maemi.gd" id="1_u51bu"]
 [ext_resource type="PackedScene" uid="uid://b5q57w75hcnaa" path="res://scenes/components/flip_2d.tscn" id="2_t5abb"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cwr3j85yhnxdm" path="res://scenes/components/input_buffer.tscn" id="7_w4ta8"]
 [ext_resource type="PackedScene" uid="uid://cbepu7ch23gwi" path="res://scenes/components/hitbox.tscn" id="8_1xslf"]
 [ext_resource type="PackedScene" uid="uid://brc2eetwp0wgx" path="res://scenes/components/standard_attack.tscn" id="8_joc0m"]
+[ext_resource type="PackedScene" uid="uid://df6e2mef74v3u" path="res://scenes/components/gravity_2d.tscn" id="12_1wfwe"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ldgvj"]
 radius = 32.0
@@ -169,6 +170,7 @@ shape = SubResource("RectangleShape2D_n2nod")
 debug_color = Color(1, 1, 1, 0.419608)
 
 [node name="Movement2D" parent="." instance=ExtResource("4_t2iv1")]
+position = Vector2(0, -200)
 
 [node name="Camera2D" type="Camera2D" parent="Movement2D"]
 process_callback = 0
@@ -311,6 +313,8 @@ movement = NodePath("../Movement2D")
 [node name="InputBuffer" parent="." instance=ExtResource("7_w4ta8")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_process_mode = 0
+method_call_mode = 1
 libraries = {
 "": SubResource("AnimationLibrary_jsy5x")
 }
@@ -335,3 +339,6 @@ grow_horizontal = 2
 size_flags_horizontal = 4
 theme_override_styles/normal = SubResource("StyleBoxFlat_his4j")
 text = "Current Animation"
+
+[node name="Gravity2D" parent="." node_paths=PackedStringArray("movement") instance=ExtResource("12_1wfwe")]
+movement = NodePath("../Movement2D")

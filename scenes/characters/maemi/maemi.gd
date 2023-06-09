@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 		if z_movement == 0:
 			movement.limit_z_speed(0)
 		else:
-			movement.add_velocity(Vector3.FORWARD * z_movement * 10000 * delta)
+			movement.add_velocity(Vector3.FORWARD * z_movement * 10000 * delta) # forward is (0, 0, -1)
 			movement.limit_z_speed(500)
 		
 		if Input.is_action_just_pressed("p1_jump"):
