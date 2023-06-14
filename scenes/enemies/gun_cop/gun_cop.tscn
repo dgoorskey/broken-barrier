@@ -1,0 +1,122 @@
+[gd_scene load_steps=14 format=3 uid="uid://deoyycf6jf6ji"]
+
+[ext_resource type="PackedScene" uid="uid://2faqg6de4wtl" path="res://scenes/components/movement_2d.tscn" id="1_qpasy"]
+[ext_resource type="PackedScene" uid="uid://b5q57w75hcnaa" path="res://scenes/components/flip_2d.tscn" id="2_eqhed"]
+[ext_resource type="Texture2D" uid="uid://ceiu71uyisi3b" path="res://scenes/enemies/gun_cop/idle.png" id="3_77yyw"]
+[ext_resource type="PackedScene" uid="uid://cbepu7ch23gwi" path="res://scenes/components/hitbox.tscn" id="3_a7cal"]
+[ext_resource type="PackedScene" uid="uid://co3gt75q0mvrx" path="res://scenes/components/hurtbox.tscn" id="4_4ycer"]
+[ext_resource type="PackedScene" uid="uid://b03emya1b4af6" path="res://scenes/components/jump_2d.tscn" id="5_mp4o3"]
+[ext_resource type="PackedScene" uid="uid://df6e2mef74v3u" path="res://scenes/components/gravity_2d.tscn" id="6_1kfsw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oeqr2"]
+radius = 30.0
+height = 128.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1as86"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xc2my"]
+
+[sub_resource type="Animation" id="Animation_f4vx6"]
+resource_name = "idle"
+length = 0.333335
+loop_mode = 1
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Movement2D/Flip2D/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_77yyw")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Movement2D/Flip2D/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-28, -152), Vector2(-28, -150)]
+}
+
+[sub_resource type="Animation" id="Animation_3toc3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Movement2D/Flip2D/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_77yyw")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Movement2D/Flip2D/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-28, -152)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_06s7t"]
+_data = {
+"RESET": SubResource("Animation_3toc3"),
+"idle": SubResource("Animation_f4vx6")
+}
+
+[node name="GunCop" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_oeqr2")
+
+[node name="Movement2D" parent="." instance=ExtResource("1_qpasy")]
+
+[node name="Flip2D" parent="Movement2D" instance=ExtResource("2_eqhed")]
+
+[node name="Sprite2D" type="Sprite2D" parent="Movement2D/Flip2D"]
+position = Vector2(-28, -152)
+texture = ExtResource("3_77yyw")
+
+[node name="Moves" type="Node2D" parent="Movement2D/Flip2D"]
+
+[node name="Hurtbox" parent="Movement2D/Flip2D/Moves" node_paths=PackedStringArray("movement") instance=ExtResource("4_4ycer")]
+movement = NodePath("../../..")
+
+[node name="HurtboxCollider" type="CollisionShape2D" parent="Movement2D/Flip2D/Moves/Hurtbox"]
+shape = SubResource("RectangleShape2D_1as86")
+debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="Hitbox" parent="Movement2D/Flip2D/Moves" node_paths=PackedStringArray("movement", "flip2d") instance=ExtResource("3_a7cal")]
+movement = NodePath("../../..")
+flip2d = NodePath("../..")
+
+[node name="HitboxCollider" type="CollisionShape2D" parent="Movement2D/Flip2D/Moves/Hitbox"]
+shape = SubResource("RectangleShape2D_xc2my")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Jump2D" parent="." node_paths=PackedStringArray("movement") instance=ExtResource("5_mp4o3")]
+movement = NodePath("../Movement2D")
+
+[node name="Gravity2D" parent="." node_paths=PackedStringArray("movement") instance=ExtResource("6_1kfsw")]
+movement = NodePath("../Movement2D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_06s7t")
+}

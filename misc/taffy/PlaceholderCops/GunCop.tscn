@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://c8y2reecri4xf"]
 
-[ext_resource type="Texture2D" uid="uid://ceiu71uyisi3b" path="res://scenes/enemies/placeholder0010.png" id="1_m5px8"]
+[ext_resource type="Texture2D" uid="uid://ceiu71uyisi3b" path="res://scenes/enemies/gun_cop/idle.png" id="1_2qnij"]
 [ext_resource type="Texture2D" uid="uid://bxbcxltulyflb" path="res://scenes/enemies/placeholder0011.png" id="2_jmmha"]
 [ext_resource type="Texture2D" uid="uid://bvx1rftjdjgxe" path="res://scenes/enemies/magnumfire.png" id="3_5214d"]
 [ext_resource type="Texture2D" uid="uid://d2ocb165p6x6p" path="res://scenes/enemies/placeholder0013.png" id="4_sx0i2"]
@@ -1658,12 +1658,12 @@ shape = SubResource("RectangleShape2D_e2gh3")
 
 [node name="GunIdle" type="Sprite2D" parent="Movement"]
 position = Vector2(-23, -146)
-texture = ExtResource("1_m5px8")
+texture = ExtResource("1_2qnij")
 
 [node name="GunActiveIdle" type="Sprite2D" parent="Movement"]
 visible = false
 position = Vector2(-23, -146)
-texture = ExtResource("1_m5px8")
+texture = ExtResource("1_2qnij")
 
 [node name="GunPoint" type="Sprite2D" parent="Movement"]
 visible = false

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ceiu71uyisi3b"
-path="res://.godot/imported/placeholder0010.png-5357f84817504330daebff4e88a22efd.ctex"
+path="res://.godot/imported/idle.png-7dc950ae900a83fa2d33de69620f0e15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/enemies/placeholder0010.png"
-dest_files=["res://.godot/imported/placeholder0010.png-5357f84817504330daebff4e88a22efd.ctex"]
+source_file="res://scenes/enemies/gun_cop/idle.png"
+dest_files=["res://.godot/imported/idle.png-7dc950ae900a83fa2d33de69620f0e15.ctex"]
 
 [params]
 
