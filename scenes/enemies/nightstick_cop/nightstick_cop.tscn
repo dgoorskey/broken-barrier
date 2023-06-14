@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bchqjc5wev8q0"]
+[gd_scene load_steps=43 format=3 uid="uid://bchqjc5wev8q0"]
 
 [ext_resource type="Script" path="res://scenes/enemies/nightstick_cop/nightstick_cop.gd" id="1_x2rce"]
 [ext_resource type="PackedScene" uid="uid://2faqg6de4wtl" path="res://scenes/components/movement_2d.tscn" id="2_wrjot"]
@@ -413,15 +413,72 @@ tracks/3/keys = {
 "values": [Vector2(0.5, -132)]
 }
 
+[sub_resource type="Animation" id="Animation_3q6p0"]
+resource_name = "active_idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Movement2D/Flip2D/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_n7aqo")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Movement2D/Flip2D/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-27, -130), Vector2(-27, -125), Vector2(-27, -130)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Movement2D/Flip2D/Moves/Hurtbox/HurtboxCollider:shape:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 242)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Movement2D/Flip2D/Moves/Hurtbox/HurtboxCollider:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -121)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jxryo"]
 _data = {
 "RESET": SubResource("Animation_q6atr"),
+"active_idle": SubResource("Animation_3q6p0"),
 "air_hurt": SubResource("Animation_uq8lg"),
 "grounded": SubResource("Animation_5qw7y"),
 "hurt_grounded": SubResource("Animation_q6coi"),
 "idle": SubResource("Animation_cwjec"),
 "nightstick_attack": SubResource("Animation_sr7by")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ihjqw"]
+animation = &"active_idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gw8fr"]
 animation = &"air_hurt"
@@ -432,7 +489,7 @@ animation = &"grounded"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ch2n5"]
 animation = &"hurt_grounded"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ihjqw"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aecmb"]
 animation = &"idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cvdfb"]
@@ -458,17 +515,19 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j0hsj"]
 states/Start/position = Vector2(202, 100)
+states/active_idle/node = SubResource("AnimationNodeAnimation_ihjqw")
+states/active_idle/position = Vector2(445, 120)
 states/air_hurt/node = SubResource("AnimationNodeAnimation_gw8fr")
 states/air_hurt/position = Vector2(413, 259)
 states/grounded/node = SubResource("AnimationNodeAnimation_26eym")
 states/grounded/position = Vector2(689, 259)
 states/hurt_grounded/node = SubResource("AnimationNodeAnimation_ch2n5")
 states/hurt_grounded/position = Vector2(549, 259)
-states/idle/node = SubResource("AnimationNodeAnimation_ihjqw")
-states/idle/position = Vector2(445, 120)
+states/idle/node = SubResource("AnimationNodeAnimation_aecmb")
+states/idle/position = Vector2(593, 120)
 states/nightstick_attack/node = SubResource("AnimationNodeAnimation_cvdfb")
 states/nightstick_attack/position = Vector2(267, 259)
-transitions = ["nightstick_attack", "idle", SubResource("AnimationNodeStateMachineTransition_267ct"), "air_hurt", "idle", SubResource("AnimationNodeStateMachineTransition_w086h"), "idle", "nightstick_attack", SubResource("AnimationNodeStateMachineTransition_d3sj7"), "idle", "air_hurt", SubResource("AnimationNodeStateMachineTransition_vjxah"), "grounded", "idle", SubResource("AnimationNodeStateMachineTransition_3pkxp"), "idle", "grounded", SubResource("AnimationNodeStateMachineTransition_y2v3g"), "idle", "hurt_grounded", SubResource("AnimationNodeStateMachineTransition_uydut"), "hurt_grounded", "idle", SubResource("AnimationNodeStateMachineTransition_yi1wh")]
+transitions = ["nightstick_attack", "active_idle", SubResource("AnimationNodeStateMachineTransition_267ct"), "air_hurt", "active_idle", SubResource("AnimationNodeStateMachineTransition_w086h"), "active_idle", "nightstick_attack", SubResource("AnimationNodeStateMachineTransition_d3sj7"), "active_idle", "air_hurt", SubResource("AnimationNodeStateMachineTransition_vjxah"), "grounded", "active_idle", SubResource("AnimationNodeStateMachineTransition_3pkxp"), "active_idle", "grounded", SubResource("AnimationNodeStateMachineTransition_y2v3g"), "active_idle", "hurt_grounded", SubResource("AnimationNodeStateMachineTransition_uydut"), "hurt_grounded", "active_idle", SubResource("AnimationNodeStateMachineTransition_yi1wh")]
 graph_offset = Vector2(3, 31)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_dpje1"]
