@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://d3bh0jk1n4208" path="res://scenes/enemies/placeholder0001.png" id="2_o3adp"]
 [ext_resource type="Texture2D" uid="uid://crfgxb6b1ui4y" path="res://scenes/enemies/placeholder0003.png" id="3_655i5"]
 [ext_resource type="Texture2D" uid="uid://co7a6chxr80rb" path="res://scenes/enemies/placeholder0004.png" id="4_c5efx"]
-[ext_resource type="Texture2D" uid="uid://besomeun4aybl" path="res://scenes/enemies/placeholder0015.png" id="5_5u8p1"]
-[ext_resource type="Texture2D" uid="uid://djgc2fr36e1xw" path="res://scenes/enemies/placeholder0016.png" id="6_6qyax"]
-[ext_resource type="Texture2D" uid="uid://bmse7dqprkbt4" path="res://scenes/enemies/placeholder0017.png" id="7_gj8by"]
+[ext_resource type="Texture2D" uid="uid://besomeun4aybl" path="res://scenes/enemies/nightstick_cop/air_hurt.png" id="5_5u8p1"]
+[ext_resource type="Texture2D" uid="uid://djgc2fr36e1xw" path="res://scenes/enemies/nightstick_cop/hurt_grounded.png" id="6_6qyax"]
+[ext_resource type="Texture2D" uid="uid://bmse7dqprkbt4" path="res://scenes/enemies/nightstick_cop/grounded.png" id="7_gj8by"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xjgvn"]
 size = Vector2(192.5, 305.5)

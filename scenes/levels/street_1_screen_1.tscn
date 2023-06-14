@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b8ju7nfksh2mo" path="res://scenes/components/terrain_2d.tscn" id="2_ue0v7"]
 [ext_resource type="PackedScene" uid="uid://be8vlxsen77hj" path="res://scenes/components/level_changer.tscn" id="3_u7353"]
 [ext_resource type="PackedScene" uid="uid://bvr2oi6y8bcxk" path="res://scenes/characters/maemi/maemi.tscn" id="4_vcpyu"]
-[ext_resource type="PackedScene" uid="uid://bchqjc5wev8q0" path="res://scenes/enemies/nightstick_cop.tscn" id="5_dye7q"]
+[ext_resource type="PackedScene" uid="uid://bchqjc5wev8q0" path="res://scenes/enemies/nightstick_cop/nightstick_cop.tscn" id="5_dye7q"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_y4aan"]
 

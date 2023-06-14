@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://bvx1rftjdjgxe" path="res://scenes/enemies/magnumfire.png" id="3_5214d"]
 [ext_resource type="Texture2D" uid="uid://d2ocb165p6x6p" path="res://scenes/enemies/placeholder0013.png" id="4_sx0i2"]
 [ext_resource type="Texture2D" uid="uid://bmt7gbhrauihj" path="res://scenes/enemies/placeholder0014.png" id="5_kxupg"]
-[ext_resource type="Texture2D" uid="uid://besomeun4aybl" path="res://scenes/enemies/placeholder0015.png" id="5_ofygj"]
-[ext_resource type="Texture2D" uid="uid://djgc2fr36e1xw" path="res://scenes/enemies/placeholder0016.png" id="6_c2dsv"]
-[ext_resource type="Texture2D" uid="uid://bmse7dqprkbt4" path="res://scenes/enemies/placeholder0017.png" id="7_yr3yg"]
+[ext_resource type="Texture2D" uid="uid://besomeun4aybl" path="res://scenes/enemies/nightstick_cop/air_hurt.png" id="5_ofygj"]
+[ext_resource type="Texture2D" uid="uid://djgc2fr36e1xw" path="res://scenes/enemies/nightstick_cop/hurt_grounded.png" id="6_c2dsv"]
+[ext_resource type="Texture2D" uid="uid://bmse7dqprkbt4" path="res://scenes/enemies/nightstick_cop/grounded.png" id="7_yr3yg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xjgvn"]
 size = Vector2(192.5, 305.5)

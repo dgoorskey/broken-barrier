@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://besomeun4aybl"
-path="res://.godot/imported/placeholder0015.png-c5c0de3a4db83df9d37df278832cd26f.ctex"
+uid="uid://y01f2be0iydg"
+path="res://.godot/imported/baton_swing_0.png-66916764482b5b2c577e62f64b25d9e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/enemies/placeholder0015.png"
-dest_files=["res://.godot/imported/placeholder0015.png-c5c0de3a4db83df9d37df278832cd26f.ctex"]
+source_file="res://scenes/enemies/nightstick_cop/baton_swing_0.png"
+dest_files=["res://.godot/imported/baton_swing_0.png-66916764482b5b2c577e62f64b25d9e4.ctex"]
 
 [params]
 

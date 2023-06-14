@@ -21,10 +21,34 @@ height = 128.0
 size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phupk"]
-size = Vector2(128, 48)
+size = Vector2(75.5, 69)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y63lw"]
-size = Vector2(128, 56)
+[sub_resource type="Animation" id="Animation_k8hwr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Movement2D/Flip2D/Moves/Hitbox/HitboxCollider:shape:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(75.5, 69)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Movement2D/Flip2D/Moves/Hitbox/HitboxCollider:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(130.5, -46)]
+}
 
 [sub_resource type="Animation" id="Animation_utg8m"]
 resource_name = "idle"
@@ -66,6 +90,30 @@ tracks/0/keys = {
 "method": &"hit"
 }]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Movement2D/Flip2D/Moves/Hitbox/HitboxCollider:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(213.594, 47.75)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Movement2D/Flip2D/Moves/Hitbox/HitboxCollider:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(179.203, -28.125)]
+}
 
 [sub_resource type="Animation" id="Animation_erang"]
 resource_name = "punch"
@@ -97,9 +145,34 @@ tracks/0/keys = {
 "method": &"hit"
 }]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Movement2D/Flip2D/Moves/Hitbox/HitboxCollider:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(137.5, 69)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Movement2D/Flip2D/Moves/Hitbox/HitboxCollider:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(138.25, -88.5)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jsy5x"]
 _data = {
+"RESET": SubResource("Animation_k8hwr"),
 "idle": SubResource("Animation_utg8m"),
 "kick": SubResource("Animation_7j12l"),
 "punch": SubResource("Animation_erang")
@@ -281,34 +354,27 @@ polygon = PackedVector2Array(0, 32, -8, 40, 0, 88, 8, 40)
 
 [node name="Moves" type="Node2D" parent="Movement2D/Flip2D"]
 
+[node name="Hitbox" parent="Movement2D/Flip2D/Moves" node_paths=PackedStringArray("movement", "flip2d") instance=ExtResource("8_1xslf")]
+movement = NodePath("../../..")
+flip2d = NodePath("../..")
+
+[node name="HitboxCollider" type="CollisionShape2D" parent="Movement2D/Flip2D/Moves/Hitbox"]
+position = Vector2(130.5, -46)
+shape = SubResource("RectangleShape2D_phupk")
+disabled = true
+debug_color = Color(1, 1, 1, 0.419608)
+
 [node name="Punch" parent="Movement2D/Flip2D/Moves" node_paths=PackedStringArray("hitbox") instance=ExtResource("8_joc0m")]
-hitbox = NodePath("")
+hitbox = NodePath("../Hitbox")
 damage = 15
 hitstun = 15
 knockback = Vector2(100, 700)
 
-[node name="PunchHitbox" parent="Movement2D/Flip2D/Moves/Punch" node_paths=PackedStringArray("movement", "flip2d") instance=ExtResource("8_1xslf")]
-movement = NodePath("../../../..")
-flip2d = NodePath("../../..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Movement2D/Flip2D/Moves/Punch/PunchHitbox"]
-position = Vector2(128, -96)
-shape = SubResource("RectangleShape2D_phupk")
-debug_color = Color(1, 1, 1, 0.419608)
-
-[node name="Kick" parent="Movement2D/Flip2D/Moves" instance=ExtResource("8_joc0m")]
+[node name="Kick" parent="Movement2D/Flip2D/Moves" node_paths=PackedStringArray("hitbox") instance=ExtResource("8_joc0m")]
+hitbox = NodePath("../Hitbox")
 damage = 25
 hitstun = 25
 knockback = Vector2(500, 1000)
-
-[node name="KickHitbox" parent="Movement2D/Flip2D/Moves/Kick" node_paths=PackedStringArray("movement", "flip2d") instance=ExtResource("8_1xslf")]
-movement = NodePath("../../../..")
-flip2d = NodePath("../../..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Movement2D/Flip2D/Moves/Kick/KickHitbox"]
-position = Vector2(128, -28)
-shape = SubResource("RectangleShape2D_y63lw")
-debug_color = Color(1, 1, 1, 0.419608)
 
 [node name="Jump2D" parent="." node_paths=PackedStringArray("movement") instance=ExtResource("6_vwq21")]
 movement = NodePath("../Movement2D")

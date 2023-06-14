@@ -1,12 +1,12 @@
 [gd_scene load_steps=19 format=3 uid="uid://btageoat0155l"]
 
-[ext_resource type="Texture2D" uid="uid://chsq1rs30775w" path="res://scenes/enemies/nightstick_cop/placeholder0006.png" id="1_scuiv"]
-[ext_resource type="Texture2D" uid="uid://y01f2be0iydg" path="res://scenes/enemies/placeholder0007.png" id="2_8yqta"]
+[ext_resource type="Texture2D" uid="uid://chsq1rs30775w" path="res://scenes/enemies/nightstick_cop/idle.png" id="1_wmg01"]
+[ext_resource type="Texture2D" uid="uid://y01f2be0iydg" path="res://scenes/enemies/nightstick_cop/baton_swing_0.png" id="2_enlh3"]
 [ext_resource type="Texture2D" uid="uid://bep3h7rwkr675" path="res://scenes/enemies/batonswing.png" id="3_0np5n"]
-[ext_resource type="Texture2D" uid="uid://d2p4dcwq1320p" path="res://scenes/enemies/placeholder0009.png" id="4_b0qs1"]
-[ext_resource type="Texture2D" uid="uid://besomeun4aybl" path="res://scenes/enemies/placeholder0015.png" id="5_dqo52"]
-[ext_resource type="Texture2D" uid="uid://djgc2fr36e1xw" path="res://scenes/enemies/placeholder0016.png" id="6_i1efq"]
-[ext_resource type="Texture2D" uid="uid://bmse7dqprkbt4" path="res://scenes/enemies/placeholder0017.png" id="7_o3206"]
+[ext_resource type="Texture2D" uid="uid://d2p4dcwq1320p" path="res://scenes/enemies/nightstick_cop/baton_swing_2.png" id="4_cq3h4"]
+[ext_resource type="Texture2D" uid="uid://besomeun4aybl" path="res://scenes/enemies/nightstick_cop/air_hurt.png" id="5_4j85m"]
+[ext_resource type="Texture2D" uid="uid://djgc2fr36e1xw" path="res://scenes/enemies/nightstick_cop/hurt_grounded.png" id="6_bflqt"]
+[ext_resource type="Texture2D" uid="uid://bmse7dqprkbt4" path="res://scenes/enemies/nightstick_cop/grounded.png" id="7_cg7g1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xjgvn"]
 size = Vector2(192.5, 305.5)
@@ -1729,17 +1729,17 @@ shape = SubResource("RectangleShape2D_e2gh3")
 
 [node name="BatonIdle" type="Sprite2D" parent="Movement"]
 position = Vector2(-23, -146)
-texture = ExtResource("1_scuiv")
+texture = ExtResource("1_wmg01")
 
 [node name="BatonActive" type="Sprite2D" parent="Movement"]
 visible = false
 position = Vector2(-23, -146)
-texture = ExtResource("1_scuiv")
+texture = ExtResource("1_wmg01")
 
 [node name="BatonStart" type="Sprite2D" parent="Movement"]
 visible = false
 position = Vector2(-23, -146)
-texture = ExtResource("2_8yqta")
+texture = ExtResource("2_enlh3")
 
 [node name="BatonSwing" type="Sprite2D" parent="Movement"]
 visible = false
@@ -1748,22 +1748,22 @@ texture = ExtResource("3_0np5n")
 
 [node name="BatonRecoil" type="Sprite2D" parent="Movement"]
 position = Vector2(-52, -154)
-texture = ExtResource("4_b0qs1")
+texture = ExtResource("4_cq3h4")
 
 [node name="KnockedBack" type="Sprite2D" parent="Movement"]
 visible = false
 position = Vector2(-23, -157)
-texture = ExtResource("5_dqo52")
+texture = ExtResource("5_4j85m")
 
 [node name="HitGrounded" type="Sprite2D" parent="Movement"]
 visible = false
 position = Vector2(-66, -146)
-texture = ExtResource("6_i1efq")
+texture = ExtResource("6_bflqt")
 
 [node name="Grounded" type="Sprite2D" parent="Movement"]
 visible = false
 position = Vector2(-48, -147)
-texture = ExtResource("7_o3206")
+texture = ExtResource("7_cg7g1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2p4dcwq1320p"
-path="res://.godot/imported/placeholder0009.png-b0fdce50a9e6d117334b1a30c7d9400a.ctex"
+uid="uid://djgc2fr36e1xw"
+path="res://.godot/imported/hurt_grounded.png-830899ca32790d64c08d74846b0c5d32.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/enemies/placeholder0009.png"
-dest_files=["res://.godot/imported/placeholder0009.png-b0fdce50a9e6d117334b1a30c7d9400a.ctex"]
+source_file="res://scenes/enemies/nightstick_cop/hurt_grounded.png"
+dest_files=["res://.godot/imported/hurt_grounded.png-830899ca32790d64c08d74846b0c5d32.ctex"]
 
 [params]
 

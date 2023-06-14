@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctnyxcjmhbwhd"
-path="res://.godot/imported/placeholder0008.png-e1e38e775db819d04e1aaa6c53acd0af.ctex"
+uid="uid://chsq1rs30775w"
+path="res://.godot/imported/idle.png-a041e4f12d13d8aaa8b300d4046a8a27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/enemies/placeholder0008.png"
-dest_files=["res://.godot/imported/placeholder0008.png-e1e38e775db819d04e1aaa6c53acd0af.ctex"]
+source_file="res://scenes/enemies/nightstick_cop/idle.png"
+dest_files=["res://.godot/imported/idle.png-a041e4f12d13d8aaa8b300d4046a8a27.ctex"]
 
 [params]
 

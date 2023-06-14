@@ -2,6 +2,9 @@
 # Area that can "hit" Hurtboxes
 # - call `get_hurtboxes()` to get overlapping Hurtboxes
 # - call `hit()` to attempt to hit the closest overlapping Hurtbox
+#
+# `movement` is used to determine the altitude.
+# `flip2d` is used to determine knockback direction.
 #-------------------------------------------------------------------------------
 extends Area2D
 class_name Hitbox
