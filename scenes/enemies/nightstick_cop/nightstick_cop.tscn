@@ -1,12 +1,12 @@
 [gd_scene load_steps=17 format=3 uid="uid://bchqjc5wev8q0"]
 
-[ext_resource type="PackedScene" uid="uid://2faqg6de4wtl" path="res://scenes/components/movement_2d.tscn" id="1_p6mme"]
-[ext_resource type="Script" path="res://scenes/enemies/nightstick_cop.gd" id="1_pyv31"]
-[ext_resource type="PackedScene" uid="uid://b5q57w75hcnaa" path="res://scenes/components/flip_2d.tscn" id="2_0p27s"]
-[ext_resource type="Texture2D" uid="uid://bbuhtmw4f2nsa" path="res://icon.svg" id="3_7qitc"]
-[ext_resource type="PackedScene" uid="uid://co3gt75q0mvrx" path="res://scenes/components/hurtbox.tscn" id="4_yhxmx"]
-[ext_resource type="PackedScene" uid="uid://b03emya1b4af6" path="res://scenes/components/jump_2d.tscn" id="5_ff2w3"]
-[ext_resource type="PackedScene" uid="uid://df6e2mef74v3u" path="res://scenes/components/gravity_2d.tscn" id="6_waidg"]
+[ext_resource type="Script" path="res://scenes/enemies/nightstick_cop/nightstick_cop.gd" id="1_x2rce"]
+[ext_resource type="PackedScene" uid="uid://2faqg6de4wtl" path="res://scenes/components/movement_2d.tscn" id="2_wrjot"]
+[ext_resource type="PackedScene" uid="uid://b5q57w75hcnaa" path="res://scenes/components/flip_2d.tscn" id="3_fbuqe"]
+[ext_resource type="Texture2D" uid="uid://chsq1rs30775w" path="res://scenes/enemies/nightstick_cop/placeholder0006.png" id="4_4wy6s"]
+[ext_resource type="PackedScene" uid="uid://co3gt75q0mvrx" path="res://scenes/components/hurtbox.tscn" id="5_ddfdd"]
+[ext_resource type="PackedScene" uid="uid://b03emya1b4af6" path="res://scenes/components/jump_2d.tscn" id="6_bv60x"]
+[ext_resource type="PackedScene" uid="uid://df6e2mef74v3u" path="res://scenes/components/gravity_2d.tscn" id="7_hj37q"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u60ox"]
 radius = 32.0
@@ -29,7 +29,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -64), Vector2(0, -72), Vector2(0, -64)]
+"values": [Vector2(-27, -130), Vector2(-27, -115), Vector2(-27, -130)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Movement2D/Flip2D/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.9), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_q6atr"]
@@ -45,6 +57,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Movement2D/Flip2D/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0.9)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jxryo"]
@@ -67,20 +91,21 @@ transitions = ["Start", "IDLE", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_dpje1"]
 
 [node name="NightstickCop" type="CharacterBody2D" node_paths=PackedStringArray("movement")]
-script = ExtResource("1_pyv31")
+script = ExtResource("1_x2rce")
 movement = NodePath("Movement2D")
 
 [node name="FeetCollision" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_u60ox")
 
-[node name="Movement2D" parent="." instance=ExtResource("1_p6mme")]
+[node name="Movement2D" parent="." instance=ExtResource("2_wrjot")]
 
-[node name="Flip2D" parent="Movement2D" instance=ExtResource("2_0p27s")]
+[node name="Flip2D" parent="Movement2D" instance=ExtResource("3_fbuqe")]
 
 [node name="Sprite2D" type="Sprite2D" parent="Movement2D/Flip2D"]
 position = Vector2(0, -64)
-texture = ExtResource("3_7qitc")
+scale = Vector2(1, 0.9)
+texture = ExtResource("4_4wy6s")
 
 [node name="Label" type="Label" parent="Movement2D/Flip2D"]
 offset_left = -32.0
@@ -90,7 +115,7 @@ offset_bottom = -68.0
 text = "COP SPRITE
 FACING ==>"
 
-[node name="Hurtbox" parent="Movement2D" node_paths=PackedStringArray("movement") instance=ExtResource("4_yhxmx")]
+[node name="Hurtbox" parent="Movement2D" node_paths=PackedStringArray("movement") instance=ExtResource("5_ddfdd")]
 movement = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement2D/Hurtbox"]
@@ -111,8 +136,8 @@ active = true
 process_callback = 0
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_dpje1")
 
-[node name="Jump2D" parent="." node_paths=PackedStringArray("movement") instance=ExtResource("5_ff2w3")]
+[node name="Jump2D" parent="." node_paths=PackedStringArray("movement") instance=ExtResource("6_bv60x")]
 movement = NodePath("../Movement2D")
 
-[node name="Gravity2D" parent="." node_paths=PackedStringArray("movement") instance=ExtResource("6_waidg")]
+[node name="Gravity2D" parent="." node_paths=PackedStringArray("movement") instance=ExtResource("7_hj37q")]
 movement = NodePath("../Movement2D")
